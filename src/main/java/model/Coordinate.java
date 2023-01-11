@@ -2,11 +2,12 @@ package model;
 
 public class Coordinate {
 
-    private char letter;
-    private int number;
+    private final char letter;
+    private final int number;
+
 
     public Coordinate(char letter, int number) {
-        this.letter = letter;
+        this.letter = Character.toUpperCase(letter);
         this.number = number;
     }
 
@@ -59,6 +60,17 @@ public class Coordinate {
         return  down().right();
     }
 
+    @Override
+    public boolean equals(Object o) {
+
+        if(! (o instanceof  Coordinate))
+            return  false;
+         Coordinate c = (Coordinate) o;
+        return (c.getLetter()==this.letter)&& (c.getNumber() == this.number);
+
+
+
+    }
 
 
 }

@@ -21,13 +21,17 @@ class CoordinateTest {
     @Test
     void down() {
 
-        Coordinate c1 = new Coordinate('c',2);
-        Coordinate c2 = new Coordinate( 'c',3).down();
+        Coordinate c1 = new Coordinate('c',3);
+        Coordinate c2 = new Coordinate( 'c',2).down();
         assertEquals(c1,c2);
     }
 
     @Test
     void right() {
+
+        Coordinate c1 = new Coordinate('a',3);
+        Coordinate c2 = new Coordinate( 'b',3).right();
+        assertEquals(c1,c2);
     }
 
     @Test

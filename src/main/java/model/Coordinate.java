@@ -6,6 +6,11 @@ public class Coordinate {
     private final int number;
 
 
+    @Override
+    public String toString() {
+        return "("+ letter + " " + number+")";
+    }
+
     public Coordinate(char letter, int number) {
         this.letter = Character.toUpperCase(letter);
         this.number = number;
@@ -67,8 +72,6 @@ public class Coordinate {
             return  false;
          Coordinate c = (Coordinate) o;
         return (c.getLetter()==this.letter)&& (c.getNumber() == this.number);
-
-
 
     }
 

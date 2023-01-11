@@ -52,18 +52,18 @@ public class Piece {
 
 
     public  enum Type{
-        WHITE_KING("\u265A",Color.WHITE),
-        WHITE_QUEEN("\u265B",Color.WHITE),
-        WHITE_ROOK("\u265C",Color.WHITE),
-        WHITE_BISHOP("\u265D",Color.WHITE),
-        WHITE_KNIGHT("\u265E",Color.WHITE),
-        WHITE_PAWN("\u2659",Color.WHITE),
-        BLACK_KING("\u265A",Color.BLACK),
-        BLACK_QUEEN("\u265B",Color.BLACK),
-        BLACK_ROOK("\u265C",Color.BLACK),
-        BLACK_BISHOP("\u265D",Color.BLACK),
-        BLACK_KNIGHT("\u265E",Color.BLACK),
-        BLACK_PAWN("\u2659",Color.BLACK),
+        WHITE_KING("♚",Color.WHITE),
+        WHITE_QUEEN("♛",Color.WHITE),
+        WHITE_ROOK("♜",Color.WHITE),
+        WHITE_BISHOP("♝",Color.WHITE),
+        WHITE_KNIGHT("♞",Color.WHITE),
+        WHITE_PAWN("♙",Color.WHITE),
+        BLACK_KING("♚",Color.BLACK),
+        BLACK_QUEEN("♛",Color.BLACK),
+        BLACK_ROOK("♜",Color.BLACK),
+        BLACK_BISHOP("♝",Color.BLACK),
+        BLACK_KNIGHT("♞",Color.BLACK),
+        BLACK_PAWN("♙",Color.BLACK),
         ;
 
         private String shape;

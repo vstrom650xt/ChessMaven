@@ -45,7 +45,7 @@ public abstract  class Piece {
 
     public enum Color {
 
-        WHITE(Attribute.TEXT_COLOR(250)),
+        WHITE(Attribute.TEXT_COLOR(255)),
         BLACK(Attribute.TEXT_COLOR(16));
 
         private final Attribute pieceColor;
@@ -99,12 +99,18 @@ public abstract  class Piece {
             this.color = color;
             this.shape = shape;
         }
+        @Override
+        public String toString() {
+            return String.valueOf(shape);
 
+        }
 
     }
     @Override
     public String toString() {
-        return colorize(shape.getShape(),shape.getColor().getPieceColor());
+        return colorize(shape.getShape(),shape.getColor().getPieceColor(),cell.getColor()
+                .getAttribute());
 
     }
+
 }

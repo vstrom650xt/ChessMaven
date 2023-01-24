@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Arrays;
+import model.knight.KnightWhite;
 
 public class Board {
 
@@ -16,7 +16,41 @@ public class Board {
         }
     }
 
-    @Override
+    //revisar el getNum
+    public Cell getCells(Coordinate coordinate) {
+        if (coordinate.getNumber()<1 || coordinate.getNumber()>8)
+            return null;
+        if (coordinate.getLetter()<'A' || coordinate.getLetter()>'H')
+            return  null;
+        return cells[coordinate.getNumber()-1][coordinate.getLetter()-'A'];
+    }
+
+    public  void placePiece(){
+        Piece p ;
+        p=new KnightWhite(getCells(new Coordinate('B',8)));
+        p.putInYourPlace();
+        p=new KnightWhite(getCells(new Coordinate('C',6)));
+        p.putInYourPlace();
+        p=new KnightWhite(getCells(new Coordinate('D',8)));
+        p.putInYourPlace();
+
+    }
+
+    public  void highlight(Coordinate[] coordinates){
+        for (Coordinate c : coordinates){
+            getCells(c).highlight();
+        }
+    }
+
+    public  void resetColor(){
+        for (Cell[] c : cells){
+            for (Cell c2 : c ){
+                c2.resetColor();
+
+            }
+        }
+    }
+        @Override
     public String toString() {
         String output = "   A  B  C  D  E  F  G  H\n";
         for (int i = 0; i < 8; i++) {

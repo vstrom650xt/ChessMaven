@@ -70,7 +70,7 @@ public class Coordinate {
 
         if(! (o instanceof  Coordinate))
             return  false;
-         Coordinate c = (Coordinate) o;
+        Coordinate c = (Coordinate) o;
         return (c.getLetter()==this.letter)&& (c.getNumber() == this.number);
 
     }

@@ -8,7 +8,11 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import static com.diogonunes.jcolor.Ansi.colorize;
 
-public class Piece {
+public abstract  class Piece {
+
+
+    public abstract Coordinate[] getNextMovements();
+
     @Override
     public String toString() {
         return colorize(shape.getShape(),shape.getColor().getPieceColor());
@@ -47,10 +51,6 @@ public class Piece {
         }
 
     }
-
-
-
-
     public  enum Type{
         WHITE_KING("♚",Color.WHITE),
         WHITE_QUEEN("♛",Color.WHITE),

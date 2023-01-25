@@ -10,18 +10,16 @@ import model.Piece;
 
 public class Prueba {
     public static void main(String[] args) {
-        Coordinate c1 = new Coordinate('g',6);
-
-        Coordinate c2 = new Coordinate('d',7);
-
-
 
         Board b = new Board();
-        System.out.println(b);
-        b.placePiece();
-    //    b.highlight();
-        System.out.println(b);
 
+  //      System.out.println(b);
+        b.placePiece();
+        Coordinate[] coordinates = b.getCells(new Coordinate('A',6)).getPiece().getNextMovements();
+
+        b.highlight(coordinates);
+        System.out.println(b);
+//
 
     }
 }

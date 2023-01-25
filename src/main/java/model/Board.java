@@ -1,6 +1,12 @@
 package model;
 
+import model.bishop.BishopBlack;
+import model.knight.KnightBlack;
 import model.knight.KnightWhite;
+import model.pawn.PawnBlack;
+import model.pawn.PawnWhite;
+import model.queen.QueenBlack;
+import model.rook.RookBlack;
 
 public class Board {
 
@@ -27,16 +33,42 @@ public class Board {
 
     public  void placePiece(){
         Piece p ;
-        p=new KnightWhite(getCells(new Coordinate('B',8)));
+        char a = 'A';
+        for (int i = 0; i < cells.length; i++) {
+            for (int j = 0; j < cells[i].length; j++) {
+                   if (j==7 ){
+                       p= new PawnBlack(getCells(new Coordinate(a,7)));
+                       p.putInYourPlace();
+                       a++;
+                   }
+
+            }
+
+        }
+        p=new PawnBlack(getCells(new Coordinate('A',6)));
         p.putInYourPlace();
-        p=new KnightWhite(getCells(new Coordinate('C',6)));
+        p=new RookBlack(getCells(new Coordinate('A',8)));
         p.putInYourPlace();
-        p=new KnightWhite(getCells(new Coordinate('D',8)));
+        p=new KnightBlack(getCells(new Coordinate('B',8)));
+        p.putInYourPlace();
+        p=new BishopBlack(getCells(new Coordinate('C',8)));
+        p.putInYourPlace();
+        p=new KnightBlack(getCells(new Coordinate('D',8)));
+        p.putInYourPlace();
+        p=new QueenBlack(getCells(new Coordinate('E',8)));
+        p.putInYourPlace();
+        p=new BishopBlack(getCells(new Coordinate('F',8)));
+        p.putInYourPlace();
+        p=new KnightBlack(getCells(new Coordinate('G',8)));
+        p.putInYourPlace();
+        p=new RookBlack(getCells(new Coordinate('H',8)));
         p.putInYourPlace();
 
+        p=new PawnWhite(getCells(new Coordinate('B',5)));
+        p.putInYourPlace();
     }
 
-    public  void highlight(Coordinate[] coordinates){
+    public  void highlight(Coordinate... coordinates){
         for (Coordinate c : coordinates){
             getCells(c).highlight();
         }

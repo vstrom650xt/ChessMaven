@@ -15,28 +15,24 @@ public abstract class Bishop extends Piece {
         coordinates= new Coordinate[0];
         Coordinate position= getCell().getCoordinate();
         Coordinate c;
-        //up
-        c = position.up().up().left();
-        check(c);
-        c = position.up().up().right();
-        check(c);
-        //down
-        c = position.up().up().left();
-        check(c);
-        c = position.up().up().right();
+        //up-right
+
+        c = position.diagonalUpRight();
         check(c);
 
-        //left
+        //up-left
+        c = position.diagonalUpLeft();
+        check(c);
 
-        c = position.left().left().up();
+        //down-left
+
+        c = position.diagonalDownLeft();
         check(c);
-        c = position.left().left().down();
+
+        //down-right
+        c = position.diagonalDownRight();
         check(c);
-        //right
-        c = position.right().right().up();
-        check(c);
-        c = position.right().right().down();
-        check(c);
+
         return new Coordinate[0];
     }
 
@@ -46,12 +42,9 @@ public abstract class Bishop extends Piece {
             if (board.getCells(c).isEmpty() || 
             board.getCells(c).getPiece().getShape().getColor() != getShape().getColor()){
                 coordinates= Tools.add(coordinates,c);
-                
             }
-                    
-            
-            
-            
+
+
         }
 
 

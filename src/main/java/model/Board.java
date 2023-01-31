@@ -2,7 +2,6 @@ package model;
 
 import model.bishop.BishopBlack;
 import model.knight.KnightBlack;
-import model.knight.KnightWhite;
 import model.pawn.PawnBlack;
 import model.pawn.PawnWhite;
 import model.queen.QueenBlack;
@@ -24,11 +23,11 @@ public class Board {
 
     //revisar el getNum
     public Cell getCells(Coordinate coordinate) {
-        if (coordinate.getNumber()<1 || coordinate.getNumber()>8)
+        if (coordinate.number()<1 || coordinate.number()>8)
             return null;
-        if (coordinate.getLetter()<'A' || coordinate.getLetter()>'H')
+        if (coordinate.letter()<'A' || coordinate.letter()>'H')
             return  null;
-        return cells[coordinate.getNumber()-1][coordinate.getLetter()-'A'];
+        return cells[coordinate.number()-1][coordinate.letter()-'A'];
     }
 
     public  void placePiece(){

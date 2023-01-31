@@ -23,7 +23,7 @@ public class PawnBlack extends Pawn {
         c = position.up();
         check(c);
         //doble up
-        if (position.getNumber()==7){
+        if (position.number()==7){
             c = position.up().up();
         }
         check(c);

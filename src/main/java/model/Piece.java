@@ -5,9 +5,8 @@ import com.diogonunes.jcolor.Attribute;
 import static com.diogonunes.jcolor.Ansi.colorize;
 
 public abstract  class Piece {
-
-
-
+//protected para que solo puedan acceder los hijo
+    protected ListCoor coordinates;
     private Type shape;
     private Cell cell;
 
@@ -22,6 +21,10 @@ public abstract  class Piece {
         return shape;
     }
 
+    public Color getColor(){
+        return shape.color;
+
+    }
     public void setShape(Type shape) {
         this.shape = shape;
     }
@@ -39,6 +42,21 @@ public abstract  class Piece {
 
     }
 
+    public void  check(Coordinate c, ListCoor coordinates){
+        Board board = getCell().getBoard();
+        if (board.getCells(c)!= null){
+            if (board.getCells(c).isEmpty() ||
+                    board.getCells(c).getPiece().getShape().getColor() != getShape().getColor()){
+                coordinates.add(c);
+
+            }
+
+
+
+        }
+
+
+    }
     public enum Color {
 
         WHITE(Attribute.TEXT_COLOR(255)),

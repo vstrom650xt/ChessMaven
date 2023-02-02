@@ -56,7 +56,7 @@ public class Board {
         p.putInYourPlace();
         p=new QueenBlack(getCells(new Coordinate('E',8)));
         p.putInYourPlace();
-        p=new BishopBlack(getCells(new Coordinate('F',8)));
+        p=new BishopBlack(getCells(new Coordinate('F',5)));
         p.putInYourPlace();
         p=new KnightBlack(getCells(new Coordinate('G',8)));
         p.putInYourPlace();
@@ -67,10 +67,12 @@ public class Board {
         p.putInYourPlace();
     }
 
-    public  void highlight(Coordinate... coordinates){
-        for (Coordinate c : coordinates){
-            getCells(c).highlight();
+    public  void highlight(ListCoor coordinates){
+        for (int i = 0; i <coordinates.size(); i++) {
+            getCells(coordinates.get(i)).highlight();
+
         }
+
     }
 
     public  void resetColor(){

@@ -11,11 +11,7 @@ public abstract class Pawn extends Piece {
 
     @Override
     public ListCoor getNextMovements() {
-
         coordinates= new ListCoor();
-        Coordinate position= getCell().getCoordinate();
-        Coordinate c;
-
         return coordinates;
     }
 

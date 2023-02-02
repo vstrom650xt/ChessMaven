@@ -3,16 +3,16 @@ package model.pawn;
 import model.*;
 
 public abstract class Pawn extends Piece {
- private Coordinate[] coordinates;
+ private ListCoor coordinates;
 
     public Pawn(Type shape, Cell cell) {
         super(shape, cell);
     }
 
     @Override
-    public Coordinate[] getNextMovements() {
+    public ListCoor getNextMovements() {
 
-        coordinates= new Coordinate[0];
+        coordinates= new ListCoor();
         Coordinate position= getCell().getCoordinate();
         Coordinate c;
 

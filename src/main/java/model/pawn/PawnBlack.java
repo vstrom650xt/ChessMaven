@@ -1,22 +1,19 @@
 package model.pawn;
 
-import model.Board;
-import model.Cell;
-import model.Coordinate;
-import model.Tools;
+import model.*;
 
 public class PawnBlack extends Pawn {
-    private Coordinate[] coordinates;
+    private ListCoor coordinates;
 
     public PawnBlack(Cell cell) {
         super(Type.BLACK_PAWN,cell);
 
     }
 
-    public Coordinate[] getNextMovements(){
+    public ListCoor getNextMovements(){
         Board board = getCell().getBoard();
 
-        coordinates = new Coordinate[0];
+        coordinates = new ListCoor();
         Coordinate position = getCell().getCoordinate();
         Coordinate c;
         //up
@@ -50,7 +47,8 @@ public class PawnBlack extends Pawn {
         if (board.getCells(c)!= null){
             if (board.getCells(c).isEmpty() ||
                     board.getCells(c).getPiece().getShape().getColor() != getShape().getColor()){
-                coordinates= Tools.add(coordinates,c);
+         //       coordinates= Tools.add(coordinates,c);
+                coordinates.add(c);
             }
 
 

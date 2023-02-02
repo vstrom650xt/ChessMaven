@@ -5,11 +5,13 @@ import model.Cell;
 import model.Coordinate;
 import model.Tools;
 
+import java.util.List;
+
 public class PawnWhite extends Pawn {
     public PawnWhite(Cell cell){
         super(Type.WHITE_PAWN,cell);
     }
-    private Coordinate[] coordinates;
+    private Coordinate[]coordinates;
 
     public void  check(Coordinate c){
         Board board = getCell().getBoard();

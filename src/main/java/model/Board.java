@@ -1,6 +1,7 @@
 package model;
 
 import model.bishop.BishopBlack;
+import model.king.KingBlack;
 import model.knight.KnightBlack;
 import model.pawn.PawnBlack;
 import model.pawn.PawnWhite;
@@ -44,26 +45,25 @@ public class Board {
             }
 
         }
-        p=new PawnBlack(getCells(new Coordinate('A',6)));
-        p.putInYourPlace();
+
         p=new RookBlack(getCells(new Coordinate('A',8)));
         p.putInYourPlace();
         p=new KnightBlack(getCells(new Coordinate('B',8)));
         p.putInYourPlace();
         p=new BishopBlack(getCells(new Coordinate('C',8)));
         p.putInYourPlace();
-        p=new KnightBlack(getCells(new Coordinate('D',8)));
+        p=new KingBlack(getCells(new Coordinate('D',5)));
         p.putInYourPlace();
         p=new QueenBlack(getCells(new Coordinate('E',8)));
         p.putInYourPlace();
-        p=new BishopBlack(getCells(new Coordinate('F',5)));
+        p=new BishopBlack(getCells(new Coordinate('F',8)));
         p.putInYourPlace();
         p=new KnightBlack(getCells(new Coordinate('G',8)));
         p.putInYourPlace();
         p=new RookBlack(getCells(new Coordinate('H',8)));
         p.putInYourPlace();
 
-        p=new PawnWhite(getCells(new Coordinate('B',5)));
+        p=new PawnWhite(getCells(new Coordinate('D',3)));
         p.putInYourPlace();
     }
 

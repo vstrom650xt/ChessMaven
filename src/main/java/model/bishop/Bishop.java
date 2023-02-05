@@ -22,54 +22,44 @@ public abstract class Bishop extends Piece {
         Piece.Color color = p.getShape().getColor();
         Coordinate position= cell.getCoordinate();
         Coordinate c;
+
+
         //up-right
-
-        while (){
-
-
-
-        }
-
-
-
         c = position.diagonalUpRight();
-        if (board.getCells(c)!= null){
-            if (board.getCells(c).isEmpty() ||
-                    board.getCells(c).getPiece().getShape().getColor() != p.getShape().getColor()){
-                coordinates.add(c);
-
-            }
-
-
+        while(board.getCells(c)!= null && board.getCells(c).isEmpty()){
+            coordinates.add(c);
+            c = c.diagonalUpRight();
 
         }
+        if (board.getCells(c) != null && board.getCells(c).getPiece().getColor()!= color){
+            coordinates.add(c);
+        }
+
+
 
         //up-left
         c = position.diagonalUpLeft();
-        if (board.getCells(c)!= null){
-            if (board.getCells(c).isEmpty() ||
-                    board.getCells(c).getPiece().getShape().getColor() != p.getShape().getColor()){
-                coordinates.add(c);
-
-            }
-
-
+        while(board.getCells(c)!= null && board.getCells(c).isEmpty()){
+            coordinates.add(c);
+            c = c.diagonalUpLeft();
 
         }
+        if (board.getCells(c) != null && board.getCells(c).getPiece().getColor()!= color){
+            coordinates.add(c);
+        }
+
 
 
         //down-left
 
         c = position.diagonalDownLeft();
-        if (board.getCells(c)!= null){
-            if (board.getCells(c).isEmpty() ||
-                    board.getCells(c).getPiece().getShape().getColor() != p.getShape().getColor()){
-                coordinates.add(c);
+        while(board.getCells(c)!= null && board.getCells(c).isEmpty()){
+            coordinates.add(c);
+            c = c.diagonalDownLeft();
 
-            }
-
-
-
+        }
+        if (board.getCells(c) != null && board.getCells(c).getPiece().getColor()!= color){
+            coordinates.add(c);
         }
 
 
@@ -77,17 +67,15 @@ public abstract class Bishop extends Piece {
 
 
         c = position.diagonalDownRight();
-
-        if (board.getCells(c)!= null){
-            if (board.getCells(c).isEmpty() ||
-                    board.getCells(c).getPiece().getShape().getColor() != p.getShape().getColor()){
-                coordinates.add(c);
-
-            }
-
-
+        while(board.getCells(c)!= null && board.getCells(c).isEmpty()){
+            coordinates.add(c);
+            c = c.diagonalDownRight();
 
         }
+        if (board.getCells(c) != null && board.getCells(c).getPiece().getColor()!= color){
+            coordinates.add(c);
+        }
+
 
         return coordinates;
     }

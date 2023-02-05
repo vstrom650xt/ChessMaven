@@ -16,32 +16,30 @@ public abstract class King extends Piece {
         Coordinate position= getCell().getCoordinate();
         Coordinate c;
         //up
-        c = position.up().up().left();
+        c = position.up();
         check(c,coordinates);
-        c = position.up().up().right();
-        check(c,coordinates);
-
         //down
-        c = position.up().up().left();
+        c = position.down();
         check(c,coordinates);
-
-        c = position.up().up().right();
-        check(c,coordinates);
-
-
         //left
-
-        c = position.left().left().up();
+        c = position.left();
         check(c,coordinates);
-
-        c = position.left().left().down();
-        check(c,coordinates);
-
         //right
-        c = position.right().right().up();
+        c = position.right();
         check(c,coordinates);
 
-        c = position.right().right().down();
+        //up-right
+        c = position.diagonalUpRight();
+        check(c,coordinates);
+
+        //up-left
+        c = position.diagonalUpLeft();
+        check(c,coordinates);
+        //down-right
+        c = position.diagonalDownRight();
+        check(c,coordinates);
+        //down-left
+        c = position.diagonalDownLeft();
         check(c,coordinates);
 
         return coordinates;

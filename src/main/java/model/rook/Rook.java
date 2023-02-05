@@ -1,6 +1,7 @@
 package model.rook;
 
 import model.*;
+import model.bishop.Bishop;
 
 public abstract class Rook extends Piece {
  private ListCoor coordinates;
@@ -8,44 +9,71 @@ public abstract class Rook extends Piece {
     public Rook(Type shape, Cell cell) {
         super(shape, cell);
     }
-
     @Override
-    public ListCoor getNextMovements() {
 
-        coordinates= new ListCoor();
-        Coordinate position= getCell().getCoordinate();
+    public ListCoor getNextMovements(){
+        return  Rook.getNextMovementsAsRook(this);
+
+    }
+    public static ListCoor getNextMovementsAsRook(Piece p) {
+
+        ListCoor coordinates= new ListCoor();
+        Cell cell = p.getCell();
+        Board board= cell.getBoard();
+        Piece.Color color = p.getShape().getColor();
+        Coordinate position= cell.getCoordinate();
         Coordinate c;
+
+
         //up
-        c = position.up().up().left();
-        check(c,coordinates);
-        c = position.up().up().right();
-        check(c,coordinates);
+        c = position.up();
+        while(board.getCells(c)!= null && board.getCells(c).isEmpty()){
+            coordinates.add(c);
+            c = c.up();
 
+        }
+        if (board.getCells(c) != null && board.getCells(c).getPiece().getColor()!= color){
+            coordinates.add(c);
+        }
         //down
-        c = position.up().up().left();
-        check(c,coordinates);
+        c = position.down();
+        while(board.getCells(c)!= null && board.getCells(c).isEmpty()){
+            coordinates.add(c);
+            c = c.down();
 
-        c = position.up().up().right();
-        check(c,coordinates);
-
+        }
+        if (board.getCells(c) != null && board.getCells(c).getPiece().getColor()!= color){
+            coordinates.add(c);
+        }
 
         //left
+        c = position.left();
+        while(board.getCells(c)!= null && board.getCells(c).isEmpty()){
+            coordinates.add(c);
+            c = c.left();
 
-        c = position.left().left().up();
-        check(c,coordinates);
-
-        c = position.left().left().down();
-        check(c,coordinates);
+        }
+        if (board.getCells(c) != null && board.getCells(c).getPiece().getColor()!= color){
+            coordinates.add(c);
+        }
 
         //right
-        c = position.right().right().up();
-        check(c,coordinates);
+        c = position.right();
+        while(board.getCells(c)!= null && board.getCells(c).isEmpty()){
+            coordinates.add(c);
+            c = c.right();
 
-        c = position.right().right().down();
-        check(c,coordinates);
+        }
+        if (board.getCells(c) != null && board.getCells(c).getPiece().getColor()!= color){
+            coordinates.add(c);
+        }
+
+
 
         return coordinates;
     }
+
+
 
     public void  check(Coordinate c){
         Board board = getCell().getBoard();

@@ -13,12 +13,12 @@ public abstract class King extends Piece {
 
     @Override
     public Set<Coordinate> getNextMovements() {
-
+coordinates.add(new Coordinate('A',2));
         Coordinate position= getCell().getCoordinate();
         Coordinate c;
         //up
         c = position.up();
-        check(c,coordinates);
+      check(c,coordinates);
         //down
         c = position.down();
         check(c,coordinates);
@@ -46,7 +46,7 @@ public abstract class King extends Piece {
         return coordinates;
     }
 
-    public void  check(Coordinate c){
+    public Coordinate  check(Coordinate c){
         Board board = getCell().getBoard();
         if (board.getCells(c)!= null){
             if (board.getCells(c).isEmpty() || 
@@ -60,6 +60,6 @@ public abstract class King extends Piece {
             
         }
 
-
+        return coordinates;
     }
 }

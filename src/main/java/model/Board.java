@@ -10,6 +10,7 @@ import model.rook.RookBlack;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class Board {
 
@@ -74,11 +75,13 @@ public class Board {
         p.putInYourPlace();
     }
 
-    public  void highlight(ListCoor coordinates){
-        for (int i = 0; i <coordinates.size(); i++) {
-            getCells(coordinates.get(i)).highlight();
+    public  void highlight(Set<Coordinate> coordinates){
+
+        for (Coordinate c : coordinates ) {
+             getCells(c).highlight();
 
         }
+
 
     }
 

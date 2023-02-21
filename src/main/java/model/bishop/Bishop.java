@@ -2,21 +2,24 @@ package model.bishop;
 
 import model.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public abstract class Bishop extends Piece {
  //private ListCoor coordinates;
+    private Set <Coordinate>  coordinates;
 
     public Bishop(Type shape, Cell cell) {
         super(shape, cell);
     }
 
-    @Override
-    public ListCoor getNextMovements(){
+    public  Set <Coordinate> getNextMovements(){
 
         return  Bishop.getNextMovementsAsBishop(this);
     }
-    public static ListCoor getNextMovementsAsBishop(Piece p) {
+    public static  Set <Coordinate> getNextMovementsAsBishop(Piece p) {
 
-        ListCoor coordinates= new ListCoor();
+        Set <Coordinate> coordinates= new HashSet<>();
         Cell cell = p.getCell();
         Board board= cell.getBoard();
         Piece.Color color = p.getShape().getColor();
@@ -79,7 +82,7 @@ public abstract class Bishop extends Piece {
 
         return coordinates;
     }
-    public void  check(Coordinate c, ListCoor coordinates){
+    public void  check(Coordinate c, Set<Coordinate> coordinates){
         Board board = getCell().getBoard();
         if (board.getCells(c)!= null){
             if (board.getCells(c).isEmpty() ||

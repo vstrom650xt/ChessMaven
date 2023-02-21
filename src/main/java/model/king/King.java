@@ -2,17 +2,18 @@ package model.king;
 
 import model.*;
 
+import java.util.Set;
+
 public abstract class King extends Piece {
- private ListCoor coordinates;
+ private Set<Coordinate> coordinates;
 
     public King(Type shape, Cell cell) {
         super(shape, cell);
     }
 
     @Override
-    public ListCoor getNextMovements() {
+    public Set<Coordinate> getNextMovements() {
 
-        coordinates= new ListCoor();
         Coordinate position= getCell().getCoordinate();
         Coordinate c;
         //up

@@ -3,21 +3,23 @@ package model.rook;
 import model.*;
 import model.bishop.Bishop;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public abstract class Rook extends Piece {
- private ListCoor coordinates;
+ private Set<Coordinate> coordinates;
 
     public Rook(Type shape, Cell cell) {
         super(shape, cell);
     }
     @Override
-
-    public ListCoor getNextMovements(){
+    public Set<Coordinate> getNextMovements(){
         return  Rook.getNextMovementsAsRook(this);
 
     }
-    public static ListCoor getNextMovementsAsRook(Piece p) {
+    public static Set<Coordinate> getNextMovementsAsRook(Piece p) {
 
-        ListCoor coordinates= new ListCoor();
+        Set<Coordinate> coordinates = new HashSet<>();
         Cell cell = p.getCell();
         Board board= cell.getBoard();
         Piece.Color color = p.getShape().getColor();

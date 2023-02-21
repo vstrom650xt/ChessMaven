@@ -2,16 +2,15 @@ package model;
 
 import com.diogonunes.jcolor.Attribute;
 
+import java.util.Set;
+
 import static com.diogonunes.jcolor.Ansi.colorize;
 
 public abstract  class Piece {
 //protected para que solo puedan acceder los hijo
-    protected ListCoor coordinates;
     private Type shape;
     private Cell cell;
-
-    public abstract ListCoor getNextMovements();
-
+    public abstract Set <Coordinate> getNextMovements();
 
     public Piece(Type shape, Cell cell){
         this.shape = shape;
@@ -42,12 +41,12 @@ public abstract  class Piece {
 
     }
 
-    public void  check(Coordinate c, ListCoor coordinates){
+    public void  check(Coordinate c, Set <Coordinate> getNextMovements){
         Board board = getCell().getBoard();
         if (board.getCells(c)!= null){
             if (board.getCells(c).isEmpty() ||
                     board.getCells(c).getPiece().getShape().getColor() != getShape().getColor()){
-                coordinates.add(c);
+                getNextMovements.add(c);
 
             }
 
@@ -124,7 +123,6 @@ public abstract  class Piece {
     public String toString() {
         return colorize(shape.getShape(),shape.getColor().getPieceColor(),cell.getColor()
                 .getAttribute());
-
     }
 
 }

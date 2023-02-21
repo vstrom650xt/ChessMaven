@@ -4,20 +4,24 @@ import model.*;
 import model.bishop.Bishop;
 import model.rook.Rook;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public abstract class Queen extends Piece {
  //private ListCoor coordinates;
+    private Set <Coordinate> coordinates;
 
     public Queen(Type shape, Cell cell) {
         super(shape, cell);
     }
 
     @Override
-    public ListCoor getNextMovements(){
-        ListCoor lc = new ListCoor();
-        lc.addAll(Bishop.getNextMovementsAsBishop(this));
-        lc.addAll(Rook.getNextMovementsAsRook(this));
+    public Set<Coordinate> getNextMovements(){
+        Set<Coordinate> pieceList = new HashSet<>() ;
+        pieceList.addAll(Bishop.getNextMovementsAsBishop(this));
+        pieceList.addAll(Rook.getNextMovementsAsRook(this));
 
-        return  lc;
+        return  pieceList;
     }
 
     public void  check(Coordinate c){

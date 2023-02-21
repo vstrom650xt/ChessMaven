@@ -2,16 +2,17 @@ package model.pawn;
 
 import model.*;
 
+import java.util.Set;
+
 public abstract class Pawn extends Piece {
- private ListCoor coordinates;
+ private Set<Coordinate> coordinates;
 
     public Pawn(Type shape, Cell cell) {
         super(shape, cell);
     }
 
     @Override
-    public ListCoor getNextMovements() {
-        coordinates= new ListCoor();
+    public Set<Coordinate> getNextMovements() {
         return coordinates;
     }
 

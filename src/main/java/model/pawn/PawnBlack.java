@@ -2,18 +2,19 @@ package model.pawn;
 
 import model.*;
 
+import java.util.Set;
+
 public class PawnBlack extends Pawn {
-    private ListCoor coordinates;
+    private Set<Coordinate> coordinates;
 
     public PawnBlack(Cell cell) {
         super(Type.BLACK_PAWN,cell);
 
     }
 
-    public ListCoor getNextMovements(){
+    public Set<Coordinate> getNextMovements(){
         Board board = getCell().getBoard();
 
-        coordinates = new ListCoor();
         Coordinate position = getCell().getCoordinate();
         Coordinate c;
         //up

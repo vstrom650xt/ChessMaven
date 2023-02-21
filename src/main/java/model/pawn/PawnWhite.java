@@ -3,17 +3,16 @@ package model.pawn;
 import model.*;
 
 import java.util.List;
+import java.util.Set;
 
 public class PawnWhite extends Pawn {
-    private ListCoor coordinates;
+    private Set<Coordinate> coordinates;
     public PawnWhite(Cell cell){
         super(Type.WHITE_PAWN,cell);
     }
 
-    public ListCoor getNextMovements(){
+    public Set<Coordinate> getNextMovements(){
         Board board = getCell().getBoard();
-
-        coordinates = new ListCoor();
         Coordinate position = getCell().getCoordinate();
         Coordinate c;
         //down

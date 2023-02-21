@@ -11,7 +11,7 @@ public class Prueba {
         Board board = new Board();
         board.placePiece();
         ListCoor p ;
-        p=board.getCells(new Coordinate('D',5)).getPiece().getNextMovements();
+      //  p=board.getCells(new Coordinate('D',5)).getPiece().getNextMovements();
         board.highlight(p);
         System.out.println(board);
 //

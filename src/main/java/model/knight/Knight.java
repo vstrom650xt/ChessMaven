@@ -3,18 +3,18 @@ package model.knight;
 import model.*;
 
 import javax.tools.Tool;
+import java.util.Set;
 
 public abstract class Knight extends Piece {
- private ListCoor coordinates;
+ private Set<Coordinate> coordinates;
 
     public Knight(Type shape, Cell cell) {
         super(shape, cell);
     }
 
     @Override
-    public ListCoor getNextMovements() {
+    public Set<Coordinate> getNextMovements() {
 
-        coordinates= new ListCoor();
         Coordinate position= getCell().getCoordinate();
         Coordinate c;
         //up

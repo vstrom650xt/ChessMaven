@@ -11,11 +11,13 @@ public class Cell {
     private final Color original;
     private Color color;
 
+    private  char letter;
+    private int numbe;
     public Cell(Board board, Coordinate coordinate) {
         this.board = board;
         this.coordinate = coordinate;
         this.piece = null;
-        this.original = ((coordinate.letter() - 1 + coordinate.number() - 'A') % 2 == 0)
+        this.original = ((coordinate.getLetter() - 1 + coordinate.getNumber() - 'A') % 2 == 0)
                 ?
                 Color.WHITE_CELL
                 :

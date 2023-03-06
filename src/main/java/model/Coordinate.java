@@ -1,11 +1,8 @@
 package model;
 
-public record Coordinate(char letter, int number) {
-
-    @Override
-    public String toString() {
-        return "(" + letter + " " + number + ")";
-    }
+public class Coordinate{
+private char letter;
+private int number;
 
     public Coordinate(char letter, int number) {
         this.letter = Character.toUpperCase(letter);
@@ -58,13 +55,30 @@ public record Coordinate(char letter, int number) {
     }
 
     @Override
+    public int hashCode() {
+        return number;
+    }
+
+    @Override
     public boolean equals(Object o) {
 
         if (!(o instanceof Coordinate c))
             return false;
-        return (c.letter() == this.letter) && (c.number() == this.number);
+        return (c.letter == this.letter) && (c.number == this.number);
 
     }
 
+    public char getLetter() {
+        return letter;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    @Override
+    public String toString() {
+        return "(" + letter + " " + number + ")";
+    }
 
 }

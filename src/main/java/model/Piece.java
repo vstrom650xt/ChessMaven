@@ -50,20 +50,13 @@ public abstract  class Piece {
             if (board.getCells(c).isEmpty() ||
                     board.getCells(c).getPiece().getShape().getColor() != getShape().getColor()){
                 getNextMovements.add(c);
-
             }
-
-
-
         }
-
-
     }
     public enum Color {
 
         WHITE(Attribute.TEXT_COLOR(255)),
         BLACK(Attribute.TEXT_COLOR(16));
-
         private final Attribute pieceColor;
 
         public Color next(){
@@ -124,6 +117,10 @@ public abstract  class Piece {
     }
 
     public void moveTo(Coordinate coordinate){
+        Piece p =  cell.getBoard().getCells(coordinate).getPiece();
+   //     p.setCell(null);
+        cell = cell.getBoard().getCells(coordinate);
+        putInYourPlace();
 
 
 

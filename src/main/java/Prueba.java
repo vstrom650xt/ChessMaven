@@ -4,6 +4,9 @@ import model.Board;
 import model.Cell;
 import model.Coordinate;
 import model.Piece;
+import model.pawn.Pawn;
+import model.pawn.PawnBlack;
+import model.rook.RookBlack;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -19,6 +22,10 @@ public class Prueba {
        Set<Coordinate> p ;
         p=board.getCells(new Coordinate('E',7)).getPiece().getNextMovements();
         board.highlight(p);
+
+
+
+
 //        System.out.println(board);
 //
 

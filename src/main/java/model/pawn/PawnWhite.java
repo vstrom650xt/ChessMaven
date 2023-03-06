@@ -19,7 +19,7 @@ public class PawnWhite extends Pawn {
         c = position.down();
         check(c);
         //doble down
-        if (position.number()==7){
+        if (position.getNumber()==7){
             c = position.down().down();
         }
         check(c);

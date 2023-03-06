@@ -17,7 +17,7 @@ public class Prueba {
         System.out.println(board);
 
        Set<Coordinate> p ;
-        p=board.getCells(new Coordinate('D',5)).getPiece().getNextMovements();
+        p=board.getCells(new Coordinate('D',7)).getPiece().getNextMovements();
 //        board.highlight(p);
 //        System.out.println(board);
 //

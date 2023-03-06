@@ -15,7 +15,6 @@ private List<Piece> pieceList;
     @Override
     public void addPiece(Piece piece) {
         pieceList.add(piece);
-
     }
 
     @Override

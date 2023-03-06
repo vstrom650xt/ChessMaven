@@ -8,6 +8,8 @@ import static com.diogonunes.jcolor.Ansi.colorize;
 
 public abstract  class Piece {
 //protected para que solo puedan acceder los hijo
+
+
     private Type shape;
     private Cell cell;
     public abstract Set <Coordinate> getNextMovements();
@@ -27,6 +29,7 @@ public abstract  class Piece {
     public void setShape(Type shape) {
         this.shape = shape;
     }
+
 
     public Cell getCell() {
         return cell;
@@ -119,6 +122,16 @@ public abstract  class Piece {
         }
 
     }
+
+    public void moveTo(Coordinate coordinate){
+
+
+
+
+
+
+    }
+
     @Override
     public String toString() {
         return colorize(shape.getShape(),shape.getColor().getPieceColor(),cell.getColor()

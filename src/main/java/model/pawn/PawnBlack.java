@@ -2,10 +2,11 @@ package model.pawn;
 
 import model.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class PawnBlack extends Pawn {
-    private Set<Coordinate> coordinates;
+    private Set<Coordinate> coordinates = new HashSet<>();
 
     public PawnBlack(Cell cell) {
         super(Type.BLACK_PAWN,cell);
@@ -14,12 +15,12 @@ public class PawnBlack extends Pawn {
 
     public Set<Coordinate> getNextMovements(){
         Board board = getCell().getBoard();
-
         Coordinate position = getCell().getCoordinate();
         Coordinate c;
         //up
         c = position.up();
         check(c);
+
         //doble up
         if (position.number()==7){
             c = position.up().up();

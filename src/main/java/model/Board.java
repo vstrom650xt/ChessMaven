@@ -14,12 +14,13 @@ import java.util.Set;
 
 public class Board {
 
+    private Map<Coordinate, Cell> board;
 
-    private Map<Coordinate, Cell> boardWl;
+
 
 
     public Board() {
-        boardWl = new HashMap<>();
+        board = new HashMap<>();
         inicializarTablero();
     }
 
@@ -27,15 +28,18 @@ public class Board {
 
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                boardWl.put(new Coordinate((char) ('A' + j), i + 1), new Cell(this, new Coordinate((char) ('A' + j), i + 1)));
+                board.put(new Coordinate((char) ('A' + j), i + 1), new Cell(this, new Coordinate((char) ('A' + j), i + 1)));
             }
 
         }
     }
 
+    public Map<Coordinate, Cell> getBoard() {
+        return board;
+    }
 
     public Cell getCells(Coordinate coordinate) {
-        return boardWl.get(coordinate);
+        return board.get(coordinate);
     }
 
     public void placePiece() {
@@ -70,7 +74,8 @@ public class Board {
         p = new RookBlack(getCells(new Coordinate('H', 8)));
         p.putInYourPlace();
 
-        p = new PawnWhite(getCells(new Coordinate('D', 3)));
+
+        p = new PawnWhite(getCells(new Coordinate('D', 2)));
         p.putInYourPlace();
     }
 
@@ -86,7 +91,7 @@ public class Board {
 
 
     public void resetColor() {
-        for (Cell c : boardWl.values()) {
+        for (Cell c : board.values()) {
             c.resetColor();
         }
     }
@@ -169,7 +174,7 @@ public class Board {
         for (int i = 0; i < 8; i++) {
             output += (i + 1) + " ";
             for (int j = 0; j < 8; j++) {
-                output += boardWl.get(new Coordinate((char) ('A' + j), 1 + i));
+                output += board.get(new Coordinate((char) ('A' + j), 1 + i));
             }
             output += " " + (i + 1) + "\n";
         }

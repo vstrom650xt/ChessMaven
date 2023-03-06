@@ -11,10 +11,5 @@ public abstract class Pawn extends Piece {
         super(shape, cell);
     }
 
-    @Override
-    public Set<Coordinate> getNextMovements() {
-        return coordinates;
-    }
-
 
 }

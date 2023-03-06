@@ -13,7 +13,6 @@ public abstract class King extends Piece {
 
     @Override
     public Set<Coordinate> getNextMovements() {
-        coordinates.add(new Coordinate('A', 2));
         Coordinate position = getCell().getCoordinate();
         Coordinate c;
         //up

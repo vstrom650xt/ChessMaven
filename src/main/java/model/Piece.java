@@ -2,6 +2,7 @@ package model;
 
 import com.diogonunes.jcolor.Attribute;
 import controller.Game;
+import tools.Input;
 
 import java.util.Set;
 
@@ -126,6 +127,10 @@ public abstract  class Piece {
     }
 
     public void moveTo(Coordinate coordinate){
+        while (!isInHighLight(coordinate)){
+            System.out.println("you are out of the hightlights");
+            Input.askCoordinate();
+        }
 
 
             Piece p =  cell.getBoard().getCells(coordinate).getPiece();

@@ -1,6 +1,7 @@
 package model;
 
 import com.diogonunes.jcolor.Attribute;
+import controller.Game;
 
 import java.util.Set;
 
@@ -118,11 +119,20 @@ public abstract  class Piece {
     }
 
     public void moveTo(Coordinate coordinate){
-        Piece p =  cell.getBoard().getCells(coordinate).getPiece();
-       // p.setCell(null);
-        cell.setPiece(null);
-        cell = cell.getBoard().getCells(coordinate);
-        putInYourPlace();
+        Game game = new Game();
+        do {
+            System.out.println("unreacheable cell");
+            coordinate = game.setPieceOnBoard();
+
+        }while (!getNextMovements().contains(coordinate));
+
+
+            Piece p =  cell.getBoard().getCells(coordinate).getPiece();
+            cell.setPiece(null);
+            cell = cell.getBoard().getCells(coordinate);
+            putInYourPlace();
+
+
 
     }
 

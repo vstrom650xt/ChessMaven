@@ -7,15 +7,22 @@ import model.Piece;
 import tools.Input;
 import tools.Screen;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Scanner;
 
 
 public class Game {
     static Board board = new Board();
     private Piece.Color shift;
-
     private String player1 = "pp", player2 = "ppt2";
+
+    public Game() {
+        shift = Piece.Color.WHITE;
+        this.player1 = player1;
+        this.player2 = player2;
+    }
 
     public void start() {
         inicio();
@@ -28,9 +35,9 @@ public class Game {
                 "[2]Exit");
         if (answ == 1) {
             do {
-                choose();
                 if (kingsAlive())
                     choose();
+
                 else
                     exit = true;
 
@@ -40,40 +47,35 @@ public class Game {
         }
     }
 
+
     public boolean kingsAlive() {
-        Piece.Type type;
+        Collection<Cell> cells = board.getBoard().values();
+        List<Cell> celdas = new ArrayList<>(cells);
         boolean foundWhiteKing = false;
         boolean foundBlackKing= false;
-
-
-        Cell cell;
-        Collection<Cell> cells = board.getBoard().values();
-        Collection<Coordinate> coords = board.getBoard().keySet();
+        Piece.Type type;
 
         for (int i = 0; i < cells.size(); i++) {
-            for (int j = 0; j < coords.size(); j++) {
-                cell = new Cell(board, new Coordinate((char) ('A' + j), i));
-                if (cell.isEmpty()) {
+            if (celdas.get(i).isEmpty()){
 
+            }else{
+                type = celdas.get(i).getPiece().getShape();
+                if (type == Piece.Type.BLACK_KING ) {
+                    foundBlackKing = true;
 
-                } else {
-                    type = board.getCells(new Coordinate((char) ('A' + j), i)).getPiece().getShape();
-                    if (type == Piece.Type.BLACK_KING ) {
-                        foundBlackKing = true;
+                } else if (type == Piece.Type.WHITE_KING ) {
+                    foundWhiteKing = true;
+                }
 
-                    } else if (type == Piece.Type.WHITE_KING ) {
-                        foundWhiteKing = true;
-                    }
-
-                    if (foundWhiteKing  && foundBlackKing ) {
-                        return true;
-                    }
+                if (foundWhiteKing  && foundBlackKing ) {
+                    return true;
                 }
 
 
             }
-
         }
+
+
 
 
         return false;
@@ -89,6 +91,7 @@ public class Game {
         System.out.println(board);
         System.out.println("where would you like to put it ?");
         coordinate = setPieceOnBoard(); // donde vamos a poner la pieza
+
         p.moveTo(coordinate);
         p.putInYourPlace();
         board.resetColor();

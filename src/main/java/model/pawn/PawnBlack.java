@@ -13,6 +13,13 @@ public class PawnBlack extends Pawn {
 
     }
 
+//    public Set<Coordinate> resetMovements(){
+//        coordinates.clear();
+//
+//        return coordinates;
+//
+//
+//    }
     public Set<Coordinate> getNextMovements(){
         Board board = getCell().getBoard();
         Coordinate position = getCell().getCoordinate();

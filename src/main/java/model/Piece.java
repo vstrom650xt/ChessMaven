@@ -126,24 +126,13 @@ public abstract  class Piece {
         return  false;
     }
 
-//    public boolean tieneMovi(){
-//        if (getNextMovements()==null)
-//            return false;
-//
-//        return true;
-//
-//    }
-
-
     public void moveTo(Coordinate coordinate){
         while (!isInHighLight(coordinate )){
             System.out.println("you are out of the hightlights");
-            Input.askCoordinate();
+             coordinate=Input.askCoordinate();
         }
 
-
             Piece p =  cell.getBoard().getCells(coordinate).getPiece();
-
             cell.setPiece(null);
             cell = cell.getBoard().getCells(coordinate);
             putInYourPlace();

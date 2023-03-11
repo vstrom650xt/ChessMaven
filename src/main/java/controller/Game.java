@@ -35,6 +35,7 @@ public class Game {
                 "[2]Exit");
         if (answ == 1) {
             do {
+                choose();
                 if (kingsAlive())
                     choose();
 
@@ -83,19 +84,27 @@ public class Game {
     }
 
     public void choose() {
+        Coordinate coordinate;
+
         System.out.println(board);
         System.out.println("choose the piece");
-        Coordinate coordinate = getCoordinatePlayer(); //elegir la pieza
-
+        coordinate = getCoordinatePlayer(); //elegir la pieza
         Piece p = board.getCells(coordinate).getPiece();
         board.highlight(board.getCells(coordinate).getPiece().getNextMovements());
         System.out.println(board);
         System.out.println("where would you like to put it ?");
-        coordinate = askPiecePlayer(); // donde vamos a poner la pieza//me devuelve la misma coordenada q la primera vez
+        coordinate = askPiecePlayer(); // donde vamos a poner la pieza
+
+
 
         p.moveTo(coordinate);
         p.putInYourPlace();
         board.resetColor();
+
+        // aver si asi limpia la lista
+
+        board.getCells(coordinate).getPiece().getNextMovements().clear();
+
         System.out.println(board);
 
 
@@ -213,13 +222,29 @@ public class Game {
     }
 
     public Coordinate getCoordinatePlayer() {
+        Scanner sc = new Scanner(System.in);
+        String coordinate;
         Coordinate cord;
         do {
-            cord =Input.askCoordinate();
+            do {
+                coordinate = sc.next().toUpperCase().trim();
+                if (!longEnought(coordinate)) {
+                    System.out.println("la coordenada debe estar formada por dos caracteres");
+                } else if (!correctFormat(coordinate)) {
+                    System.out.println("ponga primero  la letra y el numero  luego");
+                } else if (!isLetter(coordinate)) {
+                    System.out.println("la letra debe estar entre la A y la H");
+                } else if (!isNumber(coordinate)) {
+                    System.out.println("el numero  debe estar entre el 1 y el 8");
+                }
+
+            } while (!longEnought(coordinate) || !isLetter(coordinate) || !isNumber(coordinate) || !correctFormat(coordinate));
+
+            cord = new Coordinate((char) translateCoorLetter(coordinate), translateCoorNum(coordinate));
 
         } while (!pieceSelected(cord));
 
-        return cord;
+        return new Coordinate((char) translateCoorLetter(coordinate), translateCoorNum(coordinate));
     }
 
 
@@ -227,9 +252,23 @@ public class Game {
         Scanner sc = new Scanner(System.in);
         String coordinate;
         Coordinate cord;
-        cord =  Input.askCoordinate();
+        Piece piece;
 
-/// PUEDE Q SEA EL NEW
+
+        do {
+            coordinate = sc.next().toUpperCase().trim();
+            if (!longEnought(coordinate)) {
+                System.out.println("la coordenada debe estar formada por dos caracteres");
+            } else if (!correctFormat(coordinate)) {
+                System.out.println("ponga primero  la letra y el numero  luego");
+            } else if (!isLetter(coordinate)) {
+                System.out.println("la letra debe estar entre la A y la H");
+            } else if (!isNumber(coordinate)) {
+                System.out.println("el numero  debe estar entre el 1 y el 8");
+            }
+
+        } while (!longEnought(coordinate) || !isLetter(coordinate) || !isNumber(coordinate) || !correctFormat(coordinate));
+        cord = new Coordinate((char) translateCoorLetter(coordinate), translateCoorNum(coordinate));
         Cell cell = new Cell(board, cord);
         boolean isEmpty = cell.getBoard().getCells(cord).isEmpty();
         while (isEnemy(cord) && !isEmpty ) {
@@ -237,6 +276,7 @@ public class Game {
             coordinate = sc.next().toUpperCase().trim();
             cord = new Coordinate((char) translateCoorLetter(coordinate), translateCoorNum(coordinate));
         }
+
 
 
         return cord;

@@ -16,8 +16,8 @@ public class Screen {
             showViewBlack(board);
         else
             showViewWhite(board);
-        showStorage(board.getDeletedPieceManager());
-        showStorage(board.getCurrentPieceManager());
+       // showStorage(board.getDeletedPieceManager());
+      //  showStorage(board.getCurrentPieceManager());
     }
 
     private static void showViewWhite(Board board){
@@ -37,7 +37,7 @@ public class Screen {
             showViewBlack(board);
         else
             showViewWhite(board);
-        showStorage(board.getDeletedPieceManager());
+  //      showStorage(board.getDeletedPieceManager());
 //        showStorage(board.getCurrentPieceManager());
     }
 

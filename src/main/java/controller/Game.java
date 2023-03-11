@@ -7,7 +7,6 @@ import model.Piece;
 import tools.Input;
 import tools.Screen;
 
-import javax.swing.text.View;
 import java.util.Collection;
 import java.util.Scanner;
 
@@ -29,8 +28,9 @@ public class Game {
                 "[2]Exit");
         if (answ == 1) {
             do {
-                if (!kingAlive())
                 choose();
+                if (kingsAlive())
+                    choose();
                 else
                     exit = true;
 
@@ -40,8 +40,11 @@ public class Game {
         }
     }
 
-    public boolean kingAlive() {
+    public boolean kingsAlive() {
         Piece.Type type;
+        boolean foundWhiteKing = false;
+        boolean foundBlackKing= false;
+
 
         Cell cell;
         Collection<Cell> cells = board.getBoard().values();
@@ -55,7 +58,14 @@ public class Game {
 
                 } else {
                     type = board.getCells(new Coordinate((char) ('A' + j), i)).getPiece().getShape();
-                    if (type == Piece.Type.BLACK_KING || type == Piece.Type.WHITE_KING) {
+                    if (type == Piece.Type.BLACK_KING ) {
+                        foundBlackKing = true;
+
+                    } else if (type == Piece.Type.WHITE_KING ) {
+                        foundWhiteKing = true;
+                    }
+
+                    if (foundWhiteKing  && foundBlackKing ) {
                         return true;
                     }
                 }

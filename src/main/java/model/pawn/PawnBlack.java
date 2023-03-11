@@ -13,43 +13,59 @@ public class PawnBlack extends Pawn {
 
     }
 
-//    public Set<Coordinate> resetMovements(){
-//        coordinates.clear();
-//
-//        return coordinates;
-//
-//
-//    }
+    protected void checkPawnKiller(Coordinate c) {
+        Board board = getCell().getBoard();
+        if ((board.getCells(c) != null) && (!board.getCells(c).isEmpty())  && (board.getCells(c).getPiece().getColor() != getColor()) )
+            coordinates.add(c);
+    }
     public Set<Coordinate> getNextMovements(){
         Board board = getCell().getBoard();
         Coordinate position = getCell().getCoordinate();
         Coordinate c;
-        //up
-        c = position.up();
-        check(c);
+        c=position;
+        if (somethingToKill()){
 
-        //doble up
-        if (position.getNumber()==7){
-            c = position.up().up();
+        }else {
+            //up
+            c = position.up();
+            check(c);
+
+            //doble up
+            if (position.getNumber()==7){
+                c = position.up().up();
+            }
+            check(c);
+
         }
-        check(c);
+
+
 
         //kill
+
+        return coordinates;
+    }
+    public boolean somethingToKill(){
+        Board board = getCell().getBoard();
+        Coordinate position = getCell().getCoordinate();
+        Coordinate c;
         c=position;
         if (board.getCells(c.up().left())!= null) {
             if (!board.getCells(c.up().left()).isEmpty()) {
                 c = position.up().left();
                 check(c);
+                return true;
+
             }
         }
         if (board.getCells(c.up().right())!= null) {
             if (!board.getCells(c.up().right()).isEmpty()){
                 c=position.up().right();
                 check(c);
+                return true;
             }
 
         }
-        return coordinates;
+        return false;
     }
     public void  check(Coordinate c){
         Board board = getCell().getBoard();
@@ -64,4 +80,6 @@ public class PawnBlack extends Pawn {
 
 
     }
+
+
 }

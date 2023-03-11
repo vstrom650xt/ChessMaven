@@ -35,6 +35,7 @@ public class Game {
                 "[2]Exit");
         if (answ == 1) {
             do {
+                choose();
                 if (kingsAlive())
                     choose();
 
@@ -90,7 +91,7 @@ public class Game {
         board.highlight(board.getCells(coordinate).getPiece().getNextMovements());
         System.out.println(board);
         System.out.println("where would you like to put it ?");
-        coordinate = setPieceOnBoard(); // donde vamos a poner la pieza
+        coordinate = askPiecePlayer(); // donde vamos a poner la pieza
 
         p.moveTo(coordinate);
         p.putInYourPlace();
@@ -238,10 +239,12 @@ public class Game {
     }
 
 
-    public Coordinate setPieceOnBoard() {
+    public Coordinate askPiecePlayer() {
         Scanner sc = new Scanner(System.in);
         String coordinate;
         Coordinate cord;
+        Piece piece;
+
 
         do {
             coordinate = sc.next().toUpperCase().trim();
@@ -259,17 +262,14 @@ public class Game {
         cord = new Coordinate((char) translateCoorLetter(coordinate), translateCoorNum(coordinate));
         Cell cell = new Cell(board, cord);
         boolean isEmpty = cell.getBoard().getCells(cord).isEmpty();
-        while (isEnemy(cord) && !isEmpty) {
-            System.out.println("u cant kill an allyyyyyyyyyyyy");
+        while (isEnemy(cord) && !isEmpty ) {
+            System.out.println("u cant kill an ally");
             coordinate = sc.next().toUpperCase().trim();
             cord = new Coordinate((char) translateCoorLetter(coordinate), translateCoorNum(coordinate));
         }
-//        while (!isEmpty) {
-//            System.out.println("u cant kill an allyyyyyyyyyyyy");
-//            coordinate = sc.next().toUpperCase().trim();
-//            cord = new Coordinate((char) translateCoorLetter(coordinate), translateCoorNum(coordinate));
-//             isEmpty = cell.getBoard().getCells(cord).isEmpty();
-//        }/
+        piece = board.getCells(cord).getPiece();
+        //if ()
+
 
         return cord;
     }

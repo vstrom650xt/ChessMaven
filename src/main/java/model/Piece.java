@@ -118,22 +118,20 @@ public abstract  class Piece {
 
     }
 
-    public void moveTo(Coordinate coordinate){
-        Game game = new Game();
-        do {
-            System.out.println("unreacheable cell");
-            coordinate = game.setPieceOnBoard();
+    public boolean isInHighLight(Coordinate coordinate){
+        if (getNextMovements().contains(coordinate))
+            return  true;
 
-        }while (!getNextMovements().contains(coordinate));
+        return  false;
+    }
+
+    public void moveTo(Coordinate coordinate){
 
 
             Piece p =  cell.getBoard().getCells(coordinate).getPiece();
             cell.setPiece(null);
             cell = cell.getBoard().getCells(coordinate);
             putInYourPlace();
-
-
-
     }
 
     @Override

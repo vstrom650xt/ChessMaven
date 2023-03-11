@@ -31,6 +31,7 @@ public abstract  class Piece {
     }
 
 
+
     public Cell getCell() {
         return cell;
     }
@@ -118,14 +119,10 @@ public abstract  class Piece {
 
     public void moveTo(Coordinate coordinate){
         Piece p =  cell.getBoard().getCells(coordinate).getPiece();
-   //     p.setCell(null);
+       // p.setCell(null);
+        cell.setPiece(null);
         cell = cell.getBoard().getCells(coordinate);
         putInYourPlace();
-
-
-
-
-
 
     }
 

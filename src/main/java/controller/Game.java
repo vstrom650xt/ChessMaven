@@ -11,47 +11,48 @@ import java.util.Scanner;
 
 public class Game {
     static Board board = new Board();
-
-
-    public  void start(){
+    public void start() {
         inicio();
-
-
     }
 
     public void inicio() {
         int answ;
-        answ= Input.getInteger(  "[1]Play \n" +
+        answ = Input.getInteger("[1]Play \n" +
                 "[2]Exit");
+        if (answ == 1) {
+            do {
+                choose();
 
-        if (answ==1){
-            choose();
+            } while (true);
+
 
         }
     }
 
 
-    public  void choose(){
+    public void choose() {
         System.out.println(board);
         System.out.println("choose the piece");
-        Coordinate coordinate =getCoordinatePlayer(); //elegir la pieza
+        Coordinate coordinate = getCoordinatePlayer(); //elegir la pieza
         Piece p = board.getCells(coordinate).getPiece();
+        board.highlight(board.getCells(coordinate).getPiece().getNextMovements());
+        System.out.println(board);
         System.out.println("where would you like to put it ?");
-        coordinate =getCoordinatePlayer(); // donde vamos a poner la pieza
+        coordinate = setPieceOnBoard(); // donde vamos a poner la pieza
         p.moveTo(coordinate);
         p.putInYourPlace();
+
+
+        board.resetColor();
         System.out.println(board);
 
 
     }
 
 
-
-
-
-
     /**
-     *  method to translate the letter into a number
+     * method to translate the letter into a number
+     *
      * @param coord
      * @return
      */
@@ -63,6 +64,7 @@ public class Game {
 
     /**
      * method to separate the number
+     *
      * @param coord
      * @return the value of the letter translated into integer
      */
@@ -73,12 +75,13 @@ public class Game {
 
     /**
      * method to know if the coordinate is long enought or too short
+     *
      * @param coord
      * @return true if the coordinate is made of a number and a letter
      */
     public static boolean longEnought(String coord) {
         boolean correct = false;
-        if (coord.length() >= 2 ) {
+        if (coord.length() >= 2) {
             correct = true;
 
         }
@@ -88,6 +91,7 @@ public class Game {
 
     /**
      * method to know if the letter is between A nd I
+     *
      * @param coord
      * @return true if is a correct letter
      */
@@ -102,14 +106,15 @@ public class Game {
             }
 
             i++;
-        } while (i <= 73 && !correct);
+        } while (i <= 72 && !correct);
 
         return correct;
 
     }
 
     /**
-     *method to know if the number is between 1 and 9
+     * method to know if the number is between 1 and 9
+     *
      * @param coord
      * @returnw true if the number is correct
      */
@@ -125,7 +130,7 @@ public class Game {
                 correct = true;
             }
             i++;
-        } while (i <= 9 && !correct);
+        } while (i <= 8 && !correct);
 
         return correct;
 
@@ -133,6 +138,7 @@ public class Game {
 
     /**
      * method to know if the coordinate is well formatted
+     *
      * @param coord
      * @return true if is well formatted
      */
@@ -145,11 +151,11 @@ public class Game {
 
     }
 
-    public static  boolean isPiece(Coordinate coordinate){
-        if((board.getCells(coordinate).getPiece() != null))
-            return  true;
+    public static boolean isPiece(Coordinate coordinate) {
+        if ((board.getCells(coordinate).getPiece() != null))
+            return true;
 
-        return  false;
+        return false;
 
 
     }
@@ -157,6 +163,34 @@ public class Game {
     public Coordinate getCoordinatePlayer() {
         Scanner sc = new Scanner(System.in);
         String coordinate;
+        Coordinate cord;
+        do {
+            do {
+                coordinate = sc.next().toUpperCase().trim();
+                if (!longEnought(coordinate)) {
+                    System.out.println("la coordenada debe estar formada por dos caracteres");
+                } else if (!correctFormat(coordinate)) {
+                    System.out.println("ponga primero  la letra y el numero  luego");
+                } else if (!isLetter(coordinate)) {
+                    System.out.println("la letra debe estar entre la A y la H");
+                } else if (!isNumber(coordinate)) {
+                    System.out.println("el numero  debe estar entre el 1 y el 8");
+                }
+
+            } while (!longEnought(coordinate) || !isLetter(coordinate) || !isNumber(coordinate) || !correctFormat(coordinate));
+
+            cord = new Coordinate((char) translateCoorLetter(coordinate), translateCoorNum(coordinate));
+
+        } while (!pieceSelected(cord));
+
+        return new Coordinate((char) translateCoorLetter(coordinate), translateCoorNum(coordinate));
+    }
+
+
+    public Coordinate setPieceOnBoard() {
+        Scanner sc = new Scanner(System.in);
+        String coordinate;
+        Coordinate cord;
 
         do {
             coordinate = sc.next().toUpperCase().trim();
@@ -165,13 +199,47 @@ public class Game {
             } else if (!correctFormat(coordinate)) {
                 System.out.println("ponga primero  la letra y el numero  luego");
             } else if (!isLetter(coordinate)) {
-                System.out.println("la letra debe estar entre la A y la I");
+                System.out.println("la letra debe estar entre la A y la H");
             } else if (!isNumber(coordinate)) {
-                System.out.println("el numero  debe estar entre el 1 y el 9");
+                System.out.println("el numero  debe estar entre el 1 y el 8");
             }
 
         } while (!longEnought(coordinate) || !isLetter(coordinate) || !isNumber(coordinate) || !correctFormat(coordinate));
+        cord = new Coordinate((char) translateCoorLetter(coordinate), translateCoorNum(coordinate));
+        Cell cell = new Cell(board, cord);
+        boolean isEmpty = cell.getBoard().getCells(cord).isEmpty();
+        while (isEnemy(cord)) {
+            System.out.println("u cant kill an allyyyyyyyyyyyy");
+            coordinate = sc.next().toUpperCase().trim();
+            cord = new Coordinate((char) translateCoorLetter(coordinate), translateCoorNum(coordinate));
+        }
+        while (!isEmpty) {
+            System.out.println("u cant kill an allyyyyyyyyyyyy");
+            coordinate = sc.next().toUpperCase().trim();
+            cord = new Coordinate((char) translateCoorLetter(coordinate), translateCoorNum(coordinate));
+        }
+
+        return cord;
+    }
 
 
-        return new Coordinate((char) translateCoorLetter(coordinate),translateCoorNum(coordinate));
-    }}
+    public boolean isEnemy(Coordinate coordinate) {
+
+        Piece p = board.getCells(coordinate).getPiece();
+        if (p == null) {
+
+        } else if (p.getColor().equals(Piece.Color.WHITE))
+            return true;
+        return false;
+    }
+
+
+    public boolean pieceSelected(Coordinate cord) {
+        if (board.getCells(cord).isEmpty()) {
+            System.out.println("you choose an empty cell , nothing to move");
+            return false;
+        }
+
+        return true;
+    }
+}

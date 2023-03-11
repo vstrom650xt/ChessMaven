@@ -133,6 +133,9 @@ public abstract  class Piece {
         }
 
             Piece p =  cell.getBoard().getCells(coordinate).getPiece();
+
+
+
             cell.setPiece(null);
             cell = cell.getBoard().getCells(coordinate);
             putInYourPlace();

@@ -24,8 +24,22 @@ public class PawnBlack extends Pawn {
         Coordinate c;
         c=position;
         if (somethingToKill()){
+              c = position.up().left();
+             check(c);
+              c = position.up().right();
+              check(c);
 
-        }else {
+        }else if (someWAllLeft()){
+            c = position.up().left();
+            check(c);
+
+
+
+        } else if (someWAllRight()) {
+            c = position.up().right();
+            check(c);
+
+        } else {
             //up
             c = position.up();
             check(c);
@@ -40,8 +54,6 @@ public class PawnBlack extends Pawn {
 
 
 
-        //kill
-
         return coordinates;
     }
     public boolean somethingToKill(){
@@ -49,22 +61,59 @@ public class PawnBlack extends Pawn {
         Coordinate position = getCell().getCoordinate();
         Coordinate c;
         c=position;
+        boolean a1 = false;
+        boolean a2 = false;
+
         if (board.getCells(c.up().left())!= null) {
             if (!board.getCells(c.up().left()).isEmpty()) {
-                c = position.up().left();
-                check(c);
-                return true;
-
+                a1=true;
             }
         }
         if (board.getCells(c.up().right())!= null) {
             if (!board.getCells(c.up().right()).isEmpty()){
-                c=position.up().right();
-                check(c);
-                return true;
+                a2= true;
             }
-
         }
+
+        if (a1&&a2)
+            return true;
+
+
+        return false;
+    }
+    public boolean someWAllRight(){
+        Board board = getCell().getBoard();
+        Coordinate position = getCell().getCoordinate();
+        Coordinate c;
+        c=position;
+        boolean a1 = false;
+
+        if (board.getCells(c.up().right())!= null) {
+            a1= true;
+        }
+
+        if (a1)
+            return true;
+
+
+        return false;
+    }
+    public boolean someWAllLeft(){
+        Board board = getCell().getBoard();
+        Coordinate position = getCell().getCoordinate();
+        Coordinate c;
+        c=position;
+        boolean a1 = false;
+
+        if (board.getCells(c.up().left())!= null) {
+                a1=true;
+        }
+
+        if (a1)
+            return true;
+
+
+
         return false;
     }
     public void  check(Coordinate c){

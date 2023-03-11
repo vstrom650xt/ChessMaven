@@ -15,8 +15,16 @@ public class PawnWhite extends Pawn {
         Board board = getCell().getBoard();
         Coordinate position = getCell().getCoordinate();
         Coordinate c;
+        c=position;
+        if (somethingToKill()){
+            c = position.down().left();
+            check(c);
+            c = position.down().right();
+            check(c);
+
+        }else {
         //down
-        c = position.down();
+        c = position.up();
         check(c);
         //doble down
         if (position.getNumber()==7){
@@ -24,22 +32,42 @@ public class PawnWhite extends Pawn {
         }
         check(c);
 
-        //kill
+
+        }
+        return coordinates;
+    }
+
+    public boolean somethingToKill(){
+        Board board = getCell().getBoard();
+        Coordinate position = getCell().getCoordinate();
+        Coordinate c;
         c=position;
+        boolean a1 = false;
+        boolean a2 = false;
+
         if (board.getCells(c.down().left())!= null) {
             if (!board.getCells(c.down().left()).isEmpty()) {
-                c = position.down().left();
-                check(c);
+                //  c = position.up().left();
+                // check(c);
+                a1=true;
+
+
             }
         }
         if (board.getCells(c.down().right())!= null) {
             if (!board.getCells(c.down().right()).isEmpty()){
-                c=position.down().right();
-                check(c);
+                //  c=position.up().right();
+                // check(c);
+                a2= true;
             }
-
         }
-        return coordinates;
+
+        if (a1&&a2)
+            return true;
+
+
+
+        return false;
     }
     public void  check(Coordinate c){
         Board board = getCell().getBoard();

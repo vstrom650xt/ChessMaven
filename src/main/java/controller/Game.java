@@ -96,16 +96,18 @@ public class Game {
         coordinate = askPiecePlayer(); // donde vamos a poner la pieza
 
 
-
         p.moveTo(coordinate);
         p.putInYourPlace();
         board.resetColor();
 
         // aver si asi limpia la lista
+        if ( board.getCells(coordinate).getPiece()==null){
 
-        board.getCells(coordinate).getPiece().getNextMovements().clear();
+        }else {
+            board.getCells(coordinate).getPiece().getNextMovements().clear();
 
-        System.out.println(board);
+        }
+
 
 
     }
@@ -222,29 +224,14 @@ public class Game {
     }
 
     public Coordinate getCoordinatePlayer() {
-        Scanner sc = new Scanner(System.in);
-        String coordinate;
+
         Coordinate cord;
         do {
-            do {
-                coordinate = sc.next().toUpperCase().trim();
-                if (!longEnought(coordinate)) {
-                    System.out.println("la coordenada debe estar formada por dos caracteres");
-                } else if (!correctFormat(coordinate)) {
-                    System.out.println("ponga primero  la letra y el numero  luego");
-                } else if (!isLetter(coordinate)) {
-                    System.out.println("la letra debe estar entre la A y la H");
-                } else if (!isNumber(coordinate)) {
-                    System.out.println("el numero  debe estar entre el 1 y el 8");
-                }
-
-            } while (!longEnought(coordinate) || !isLetter(coordinate) || !isNumber(coordinate) || !correctFormat(coordinate));
-
-            cord = new Coordinate((char) translateCoorLetter(coordinate), translateCoorNum(coordinate));
-
+            cord=Input.askCoordinate();
         } while (!pieceSelected(cord));
+        board.getCells(cord).getPiece().getNextMovements().clear();
 
-        return new Coordinate((char) translateCoorLetter(coordinate), translateCoorNum(coordinate));
+        return cord;
     }
 
 

@@ -82,6 +82,10 @@ public class Board {
             }
 
         }
+        p = new PawnBlack(getCells(new Coordinate('B', 3)));
+        p.putInYourPlace();
+        p = new PawnBlack(getCells(new Coordinate('C', 3)));
+        p.putInYourPlace();
 
 
         p = new RookBlack(getCells(new Coordinate('A', 8)));
@@ -108,7 +112,7 @@ public class Board {
         p.putInYourPlace();
         p = new BishopWhite(getCells(new Coordinate('C', 1)));
         p.putInYourPlace();
-        p = new KingWhite(getCells(new Coordinate('D', 3)));
+        p = new KingWhite(getCells(new Coordinate('D', 1)));
         p.putInYourPlace();
         p = new QueenWhite(getCells(new Coordinate('E', 1)));
         p.putInYourPlace();

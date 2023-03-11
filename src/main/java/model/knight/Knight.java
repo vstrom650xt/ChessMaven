@@ -3,10 +3,11 @@ package model.knight;
 import model.*;
 
 import javax.tools.Tool;
+import java.util.HashSet;
 import java.util.Set;
 
 public abstract class Knight extends Piece {
- private Set<Coordinate> coordinates;
+ private Set<Coordinate> coordinates= new HashSet<>();
 
     public Knight(Type shape, Cell cell) {
         super(shape, cell);
@@ -24,10 +25,9 @@ public abstract class Knight extends Piece {
         check(c,coordinates);
 
         //down
-        c = position.up().up().left();
+        c = position.down().down().left();
         check(c,coordinates);
-
-        c = position.up().up().right();
+        c = position.down().down().right();
         check(c,coordinates);
 
 
@@ -35,14 +35,12 @@ public abstract class Knight extends Piece {
 
         c = position.left().left().up();
         check(c,coordinates);
-
         c = position.left().left().down();
         check(c,coordinates);
 
         //right
         c = position.right().right().up();
         check(c,coordinates);
-
         c = position.right().right().down();
         check(c,coordinates);
 

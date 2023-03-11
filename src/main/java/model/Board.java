@@ -92,7 +92,7 @@ public class Board {
         p.putInYourPlace();
         p = new KingBlack(getCells(new Coordinate('D', 8)));
         p.putInYourPlace();
-        p = new QueenBlack(getCells(new Coordinate('D', 6)));
+        p = new QueenBlack(getCells(new Coordinate('E', 8)));
         p.putInYourPlace();
         p = new BishopBlack(getCells(new Coordinate('F', 8)));
         p.putInYourPlace();
@@ -108,7 +108,7 @@ public class Board {
         p.putInYourPlace();
         p = new BishopWhite(getCells(new Coordinate('C', 1)));
         p.putInYourPlace();
-        p = new KingWhite(getCells(new Coordinate('D', 3)));
+        p = new KingWhite(getCells(new Coordinate('D', 1)));
         p.putInYourPlace();
         p = new QueenWhite(getCells(new Coordinate('E', 1)));
         p.putInYourPlace();
@@ -121,12 +121,9 @@ public class Board {
     }
 
     public void highlight(Set<Coordinate> coordinates) {
-
         for (Coordinate c : coordinates) {
             getCells(c).highlight();
-
         }
-
 
     }
 

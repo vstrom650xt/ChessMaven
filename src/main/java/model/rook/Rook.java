@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public abstract class Rook extends Piece {
- private Set<Coordinate> coordinates;
+ private Set<Coordinate> coordinates=new HashSet<>();
 
     public Rook(Type shape, Cell cell) {
         super(shape, cell);

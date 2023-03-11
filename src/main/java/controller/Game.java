@@ -35,7 +35,6 @@ public class Game {
                 "[2]Exit");
         if (answ == 1) {
             do {
-                choose();
                 if (kingsAlive())
                     choose();
 
@@ -87,11 +86,12 @@ public class Game {
         System.out.println(board);
         System.out.println("choose the piece");
         Coordinate coordinate = getCoordinatePlayer(); //elegir la pieza
+
         Piece p = board.getCells(coordinate).getPiece();
         board.highlight(board.getCells(coordinate).getPiece().getNextMovements());
         System.out.println(board);
         System.out.println("where would you like to put it ?");
-        coordinate = askPiecePlayer(); // donde vamos a poner la pieza
+        coordinate = askPiecePlayer(); // donde vamos a poner la pieza//me devuelve la misma coordenada q la primera vez
 
         p.moveTo(coordinate);
         p.putInYourPlace();
@@ -216,6 +216,7 @@ public class Game {
         Coordinate cord;
         do {
             cord =Input.askCoordinate();
+
         } while (!pieceSelected(cord));
 
         return cord;
@@ -228,6 +229,7 @@ public class Game {
         Coordinate cord;
         cord =  Input.askCoordinate();
 
+/// PUEDE Q SEA EL NEW
         Cell cell = new Cell(board, cord);
         boolean isEmpty = cell.getBoard().getCells(cord).isEmpty();
         while (isEnemy(cord) && !isEmpty ) {

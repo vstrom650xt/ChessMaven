@@ -9,7 +9,7 @@ import java.util.Set;
 
 public abstract class Queen extends Piece {
  //private ListCoor coordinates;
-    private Set <Coordinate> coordinates;
+    private Set <Coordinate> coordinates=new HashSet<>();
 
     public Queen(Type shape, Cell cell) {
         super(shape, cell);

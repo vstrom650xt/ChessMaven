@@ -49,7 +49,6 @@ public class PawnBlack extends Pawn {
         if (board.getCells(c)!= null){
             if (board.getCells(c).isEmpty() ||
                     board.getCells(c).getPiece().getShape().getColor() != getShape().getColor()){
-         //       coordinates= Tools.add(coordinates,c);
                 coordinates.add(c);
             }
 

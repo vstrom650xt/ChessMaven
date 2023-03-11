@@ -2,11 +2,12 @@ package model.king;
 
 import model.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public abstract class King extends Piece {
 
-    private Set<Coordinate> coordinates;
+    private Set<Coordinate> coordinates= new HashSet<>();
 
     public King(Type shape, Cell cell) {
         super(shape, cell);

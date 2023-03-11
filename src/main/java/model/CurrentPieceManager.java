@@ -7,12 +7,15 @@ import static com.diogonunes.jcolor.Ansi.colorize;
 
 public class CurrentPieceManager implements IDeletedPieceManager {
     private List<Piece> pieces;
+
+    private Piece piece;
     private Board board;
 
     public CurrentPieceManager(Board board) {
         pieces = new LinkedList<>();
         this.board = board;
     }
+
 
     @Override
     public void addPiece(Piece piece) {

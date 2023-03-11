@@ -69,6 +69,7 @@ public class Cell {
         return piece == null;
     }
 
+
     @Override
     public String toString() {
         if (isEmpty())

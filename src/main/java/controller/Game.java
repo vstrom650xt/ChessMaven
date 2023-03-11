@@ -5,30 +5,70 @@ import model.Cell;
 import model.Coordinate;
 import model.Piece;
 import tools.Input;
+import tools.Screen;
 
+import javax.swing.text.View;
+import java.util.Collection;
 import java.util.Scanner;
 
 
 public class Game {
     static Board board = new Board();
+    private Piece.Color shift;
+
+    private String player1 = "pp", player2 = "ppt2";
+
     public void start() {
         inicio();
     }
 
     public void inicio() {
+        boolean exit = false;
         int answ;
         answ = Input.getInteger("[1]Play \n" +
                 "[2]Exit");
         if (answ == 1) {
             do {
+                if (!kingAlive())
                 choose();
+                else
+                    exit = true;
 
-            } while (true);
+            } while (!exit);
 
 
         }
     }
 
+    public boolean kingAlive() {
+        Piece.Type type;
+
+        Cell cell;
+        Collection<Cell> cells = board.getBoard().values();
+        Collection<Coordinate> coords = board.getBoard().keySet();
+
+        for (int i = 0; i < cells.size(); i++) {
+            for (int j = 0; j < coords.size(); j++) {
+                cell = new Cell(board, new Coordinate((char) ('A' + j), i));
+                if (cell.isEmpty()) {
+
+
+                } else {
+                    type = board.getCells(new Coordinate((char) ('A' + j), i)).getPiece().getShape();
+                    if (type == Piece.Type.BLACK_KING || type == Piece.Type.WHITE_KING) {
+                        return true;
+                    }
+                }
+
+
+            }
+
+        }
+
+
+        return false;
+
+    }
 
     public void choose() {
         System.out.println(board);
@@ -41,8 +81,6 @@ public class Game {
         coordinate = setPieceOnBoard(); // donde vamos a poner la pieza
         p.moveTo(coordinate);
         p.putInYourPlace();
-
-
         board.resetColor();
         System.out.println(board);
 
@@ -208,16 +246,17 @@ public class Game {
         cord = new Coordinate((char) translateCoorLetter(coordinate), translateCoorNum(coordinate));
         Cell cell = new Cell(board, cord);
         boolean isEmpty = cell.getBoard().getCells(cord).isEmpty();
-        while (isEnemy(cord)) {
+        while (isEnemy(cord) && !isEmpty) {
             System.out.println("u cant kill an allyyyyyyyyyyyy");
             coordinate = sc.next().toUpperCase().trim();
             cord = new Coordinate((char) translateCoorLetter(coordinate), translateCoorNum(coordinate));
         }
-        while (!isEmpty) {
-            System.out.println("u cant kill an allyyyyyyyyyyyy");
-            coordinate = sc.next().toUpperCase().trim();
-            cord = new Coordinate((char) translateCoorLetter(coordinate), translateCoorNum(coordinate));
-        }
+//        while (!isEmpty) {
+//            System.out.println("u cant kill an allyyyyyyyyyyyy");
+//            coordinate = sc.next().toUpperCase().trim();
+//            cord = new Coordinate((char) translateCoorLetter(coordinate), translateCoorNum(coordinate));
+//             isEmpty = cell.getBoard().getCells(cord).isEmpty();
+//        }/
 
         return cord;
     }
@@ -228,7 +267,7 @@ public class Game {
         Piece p = board.getCells(coordinate).getPiece();
         if (p == null) {
 
-        } else if (p.getColor().equals(Piece.Color.WHITE))
+        } else if (p.getColor().equals(Piece.Color.BLACK))
             return true;
         return false;
     }
@@ -241,5 +280,20 @@ public class Game {
         }
 
         return true;
+    }
+
+    private void shift() {
+        if (shift == Piece.Color.WHITE)
+            System.out.println("Shift of " + player1 + ".");
+        else
+            System.out.println("Shift of " + player2 + ".");
+        Screen.show2(board, shift);
+    }
+
+    private void changeShift() {
+        if (shift == Piece.Color.WHITE)
+            shift = Piece.Color.BLACK;
+        else
+            shift = Piece.Color.WHITE;
     }
 }

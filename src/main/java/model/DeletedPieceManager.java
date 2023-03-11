@@ -1,5 +1,7 @@
 package model;
 
+import model.king.KingBlack;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -26,6 +28,7 @@ private List<Piece> pieceList;
                 count++;
         return count;
     }
+
 
     @Override
     public Piece removeLast() {

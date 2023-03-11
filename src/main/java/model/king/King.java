@@ -5,6 +5,7 @@ import model.*;
 import java.util.Set;
 
 public abstract class King extends Piece {
+
     private Set<Coordinate> coordinates;
 
     public King(Type shape, Cell cell) {

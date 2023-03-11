@@ -1,12 +1,17 @@
 package model;
 
 import model.bishop.BishopBlack;
+import model.bishop.BishopWhite;
 import model.king.KingBlack;
+import model.king.KingWhite;
 import model.knight.KnightBlack;
+import model.knight.KnightWhite;
 import model.pawn.PawnBlack;
 import model.pawn.PawnWhite;
 import model.queen.QueenBlack;
+import model.queen.QueenWhite;
 import model.rook.RookBlack;
+import model.rook.RookWhite;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +21,8 @@ public class Board {
 
     private Map<Coordinate, Cell> board;
 
-
+    private IDeletedPieceManager deletedPieceManager;
+    private IDeletedPieceManager currentPieceManager;
 
 
     public Board() {
@@ -24,6 +30,8 @@ public class Board {
         inicializarTablero();
         placePiece();
     }
+
+
 
     public void inicializarTablero() {
 
@@ -43,6 +51,20 @@ public class Board {
         return board.get(coordinate);
     }
 
+    /**
+     * @return the pieces you've killed.
+     */
+    public IDeletedPieceManager getDeletedPieceManager() {
+        return deletedPieceManager;
+    }
+
+    /**
+     * @return the piece you've on the board.
+     */
+    public IDeletedPieceManager getCurrentPieceManager() {
+        return currentPieceManager;
+    }
+
     public void placePiece() {
         Piece p;
         char a = 'A';
@@ -52,14 +74,17 @@ public class Board {
                     p = new PawnBlack(getCells(new Coordinate(a, 7)));
                     p.putInYourPlace();
                     a++;
+                } else if (j == 2) {
+                    p = new PawnWhite(getCells(new Coordinate(a, 2)));
+                    p.putInYourPlace();
                 }
 
             }
 
         }
 
-        p = new RookBlack(getCells(new Coordinate('A', 8)));
 
+        p = new RookBlack(getCells(new Coordinate('A', 8)));
         p.putInYourPlace();
         p = new KnightBlack(getCells(new Coordinate('B', 8)));
         p.putInYourPlace();
@@ -67,7 +92,7 @@ public class Board {
         p.putInYourPlace();
         p = new KingBlack(getCells(new Coordinate('D', 8)));
         p.putInYourPlace();
-        p = new QueenBlack(getCells(new Coordinate('E', 8)));
+        p = new QueenBlack(getCells(new Coordinate('D', 6)));
         p.putInYourPlace();
         p = new BishopBlack(getCells(new Coordinate('F', 8)));
         p.putInYourPlace();
@@ -77,7 +102,21 @@ public class Board {
         p.putInYourPlace();
 
 
-        p = new PawnWhite(getCells(new Coordinate('D', 2)));
+        p = new RookWhite(getCells(new Coordinate('A', 1)));
+        p.putInYourPlace();
+        p = new KnightWhite(getCells(new Coordinate('B', 1)));
+        p.putInYourPlace();
+        p = new BishopWhite(getCells(new Coordinate('C', 1)));
+        p.putInYourPlace();
+        p = new KingWhite(getCells(new Coordinate('D', 3)));
+        p.putInYourPlace();
+        p = new QueenWhite(getCells(new Coordinate('E', 1)));
+        p.putInYourPlace();
+        p = new BishopWhite(getCells(new Coordinate('F', 1)));
+        p.putInYourPlace();
+        p = new KnightWhite(getCells(new Coordinate('G', 1)));
+        p.putInYourPlace();
+        p = new RookWhite(getCells(new Coordinate('H', 1)));
         p.putInYourPlace();
     }
 

@@ -103,7 +103,7 @@ public class Game {
         p.moveTo(coordinate);
 
 
-        p.putInYourPlace();
+       // p.putInYourPlace();
         board.resetColor();
 
         // aver si asi limpia la lista

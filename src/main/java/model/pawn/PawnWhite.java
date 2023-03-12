@@ -10,6 +10,7 @@ public class PawnWhite extends Pawn {
     public PawnWhite(Cell cell) {
         super(Type.WHITE_PAWN, cell);
     }
+
     @Override
     public Set<Coordinate> getNextMovements() {
         Coordinate position = getCell().getCoordinate(), c;
@@ -33,7 +34,7 @@ public class PawnWhite extends Pawn {
     public Piece transform(Piece piece) {
 
 
-        piece=new QueenBlack(getCell());
+        piece = new QueenBlack(getCell());
         getCell().getBoard().getDeletedPieceManager().addPiece(piece);
         piece.putInYourPlace();
 //        Piece p = getCell().getPiece();
@@ -41,6 +42,6 @@ public class PawnWhite extends Pawn {
 //        getCell().getBoard().getDeletedPieceManager().addPiece(p);
 //        p.putInYourPlace();
 
-        return  piece;
+        return piece;
     }
 }

@@ -5,19 +5,26 @@ import model.*;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ *Bishop
+ */
 public abstract class Bishop extends Piece {
-    //private ListCoor coordinates;
-    private Set<Coordinate> coordinates;
 
     public Bishop(Type shape, Cell cell) {
         super(shape, cell);
     }
 
+    /**
+     * @return  possible movements
+     */
     public Set<Coordinate> getNextMovements() {
-
         return Bishop.getNextMovementsAsBishop(this);
     }
 
+    /**
+     * @param p
+     * @return possible movements
+     */
     public static Set<Coordinate> getNextMovementsAsBishop(Piece p) {
 
         Set<Coordinate> coordinates = new HashSet<>();
@@ -82,6 +89,10 @@ public abstract class Bishop extends Piece {
         return coordinates;
     }
 
+    /**
+     * @param c
+     * @param coordinates that the bishop can move
+     */
     public void check(Coordinate c, Set<Coordinate> coordinates) {
         Board board = getCell().getBoard();
         if (board.getCells(c) != null) {

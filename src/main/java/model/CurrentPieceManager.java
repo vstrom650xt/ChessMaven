@@ -18,32 +18,29 @@ public class CurrentPieceManager implements ICurrentPieceManager {
     }
 
 
-
     @Override
     public void addPiece(Piece piece) {
         pieces.add(piece);
     }
 
     @Override
-    public int count(Piece.Color color,Piece.Type shape) {
+    public int count(Piece.Color color, Piece.Type shape) {
         int count = 0;
 
         for (Cell cell : board.getBoard().values())
-            if (cell.getPiece() ==null){
+            if (cell.getPiece() == null) {
 
-            }else if (cell.getPiece().getShape().getColor().equals(color)){
-                    Piece.Type  aux =cell.getPiece().getShape();
-                    if (aux.equals(shape)){
-                        count++;
+            } else if (cell.getPiece().getShape().getColor().equals(color)) {
+                Piece.Type aux = cell.getPiece().getShape();
+                if (aux.equals(shape)) {
+                    count++;
 
-                    }
+                }
             }
-
 
 
         return count;
     }
-
 
 
     @Override

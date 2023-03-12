@@ -11,8 +11,9 @@ public class Cell {
     private final Color original;
     private Color color;
 
-    private  char letter;
+    private char letter;
     private int numbe;
+
     public Cell(Board board, Coordinate coordinate) {
         this.board = board;
         this.coordinate = coordinate;
@@ -78,7 +79,7 @@ public class Cell {
             return colorize(" ", color.getAttribute()) + piece + colorize(" ", color.getAttribute());
     }
 
-   public enum Color {
+    public enum Color {
         WHITE_CELL(Attribute.BACK_COLOR(180, 180, 180)),
         BLACK_CELL(Attribute.BACK_COLOR(100, 100, 100)),
         HIGHLIGHT_KILL_WHITE(Attribute.BACK_COLOR(180, 0, 0)),

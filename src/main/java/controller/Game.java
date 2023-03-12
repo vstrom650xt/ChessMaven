@@ -229,7 +229,7 @@ public class Game {
         do {
             cord=Input.askCoordinate();
         } while (!pieceSelected(cord));
-        board.getCells(cord).getPiece().getNextMovements().clear();
+   //     board.getCells(cord).getPiece().getNextMovements().clear();
 
         return cord;
     }

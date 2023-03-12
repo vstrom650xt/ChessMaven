@@ -4,6 +4,7 @@ import com.diogonunes.jcolor.Attribute;
 import controller.Game;
 import tools.Input;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import static com.diogonunes.jcolor.Ansi.colorize;
@@ -13,9 +14,8 @@ public abstract  class Piece {
 
 
     private Type shape;
-    private Cell cell;
-    public abstract Set <Coordinate> getNextMovements();
-
+    protected Cell cell;
+    protected Set<Coordinate> coordinates = new HashSet<>();
     public Piece(Type shape, Cell cell){
         this.shape = shape;
         this.cell = cell;
@@ -23,7 +23,7 @@ public abstract  class Piece {
     public Type getShape() {
         return shape;
     }
-
+    public abstract Set<Coordinate> getNextMovements();
     public Color getColor(){
         return shape.color;
 
@@ -118,6 +118,7 @@ public abstract  class Piece {
         }
 
     }
+//tiene movimientos , no esta atrapada
 
     public boolean isInHighLight(Coordinate coordinate){
         if (getNextMovements().contains(coordinate))
@@ -126,21 +127,24 @@ public abstract  class Piece {
         return  false;
     }
 
-    public void moveTo(Coordinate coordinate){
+    public boolean moveTo(Coordinate coordinate) {
+
         while (!isInHighLight(coordinate )){
             System.out.println("you are out of the hightlights");
-             coordinate=Input.askCoordinate();
+            coordinate=Input.askCoordinate();
         }
-
-            Piece p =  cell.getBoard().getCells(coordinate).getPiece();
-
-
-
-            cell.setPiece(null);
-            cell = cell.getBoard().getCells(coordinate);
-            putInYourPlace();
+        if (!getNextMovements().contains(coordinate))
+            return false;
+        if (!cell.getBoard().getCells(coordinate).isEmpty()){
+            Piece p = cell.getBoard().getCells(coordinate).getPiece();
+            p.cell = null;
+            //cell.getBoard().getDeletedPieceManager().addPiece(p);
+        }
+        cell.setPiece(null);
+        cell = cell.getBoard().getCells(coordinate);
+        putInYourPlace();
+        return true;
     }
-
     @Override
     public String toString() {
         return colorize(shape.getShape(),shape.getColor().getPieceColor(),cell.getColor()

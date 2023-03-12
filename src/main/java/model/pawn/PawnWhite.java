@@ -1,86 +1,39 @@
 package model.pawn;
 
 import model.*;
+import model.queen.QueenBlack;
 
 import java.util.List;
 import java.util.Set;
 
 public class PawnWhite extends Pawn {
-    private Set<Coordinate> coordinates;
-    public PawnWhite(Cell cell){
-        super(Type.WHITE_PAWN,cell);
+    public PawnWhite(Cell cell) {
+        super(Type.WHITE_PAWN, cell);
     }
+    @Override
+    public Set<Coordinate> getNextMovements() {
+        Coordinate position = getCell().getCoordinate(), c;
 
-    public Set<Coordinate> getNextMovements(){
-        Board board = getCell().getBoard();
-        Coordinate position = getCell().getCoordinate();
-        Coordinate c;
-        c=position;
-        if (somethingToKill()){
-            c = position.down().left();
-            check(c);
-            c = position.down().right();
-            check(c);
-
-        }else {
-        //down
+        //UP
         c = position.up();
-        check(c);
-        //doble down
-        if (position.getNumber()==7){
-            c = position.down().down();
+        checkPawnMove(c);
+        if (getCell().getCoordinate().getNumber() == 7) {
+            c = position.up().up();
+            checkPawnMove(c);
         }
-        check(c);
+        c = position.diagonalUpLeft();
+        checkPawnKiller(c);
+        c = position.diagonalUpRight();
+        checkPawnKiller(c);
 
-
-        }
         return coordinates;
     }
 
-    public boolean somethingToKill(){
-        Board board = getCell().getBoard();
-        Coordinate position = getCell().getCoordinate();
-        Coordinate c;
-        c=position;
-        boolean a1 = false;
-        boolean a2 = false;
-
-        if (board.getCells(c.down().left())!= null) {
-            if (!board.getCells(c.down().left()).isEmpty()) {
-                //  c = position.up().left();
-                // check(c);
-                a1=true;
-
-
-            }
-        }
-        if (board.getCells(c.down().right())!= null) {
-            if (!board.getCells(c.down().right()).isEmpty()){
-                //  c=position.up().right();
-                // check(c);
-                a2= true;
-            }
-        }
-
-        if (a1&&a2)
-            return true;
-
-
-
-        return false;
-    }
-    public void  check(Coordinate c){
-        Board board = getCell().getBoard();
-        if (board.getCells(c)!= null){
-            if (board.getCells(c).isEmpty() ||
-                    board.getCells(c).getPiece().getShape().getColor() != getShape().getColor()){
-                //       coordinates= Tools.add(coordinates,c);
-                coordinates.add(c);
-            }
-
-
-        }
-
-
+    @Override
+    public void transform() {
+        Piece p = getCell().getPiece();
+        new QueenBlack(getCell());
+        getCell().getBoard().getDeletedPieceManager().addPiece(p);
+        cell = null;
     }
 }

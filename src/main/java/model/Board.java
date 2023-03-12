@@ -82,7 +82,7 @@ public class Board {
             }
 
         }
-        p = new PawnBlack(getCells(new Coordinate('B', 3)));
+        p = new PawnBlack(getCells(new Coordinate('A', 4)));
         p.putInYourPlace();
         p = new PawnBlack(getCells(new Coordinate('C', 3)));
         p.putInYourPlace();
@@ -125,13 +125,9 @@ public class Board {
     }
 
     public void highlight(Set<Coordinate> coordinates) {
-
         for (Coordinate c : coordinates) {
             getCells(c).highlight();
-
         }
-
-
     }
 
 

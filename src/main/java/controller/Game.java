@@ -230,7 +230,7 @@ public class Game {
         Coordinate cord;
         do {
             cord=Input.askCoordinate();
-        } while (!pieceSelected(cord) && !isYourColor(cord));
+        } while (!pieceSelected(cord)||!isYourColor(cord));
    //     board.getCells(cord).getPiece().getNextMovements().clear();
 
         return cord;
@@ -283,18 +283,14 @@ public class Game {
     }
 
     public boolean isYourColor(Coordinate cord) {
-        if (board.getCells(cord).getPiece().getColor() == shift){
-            if (board.getCells(cord).getPiece().getNextMovements().size()>0)
-               return true;
-            else{
-                System.out.println("This piece is not from your color");
+        if (board.getCells(cord).getPiece().getColor() != shift){
+            System.out.println("is not from your color");
                 return false;
-            }
 
 
         }
 
-        return false;
+        return true;
     }
     public boolean pieceSelected(Coordinate cord) {
         if (board.getCells(cord).isEmpty()) {

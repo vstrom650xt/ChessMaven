@@ -29,8 +29,9 @@ public class Board {
         board = new HashMap<>();
         inicializarTablero();
         placePiece();
+        deletedPieceManager = new DeletedPieceManager();
+       // currentPieceManager = new CurrentPieceManager(this);
     }
-
 
 
     public void inicializarTablero() {

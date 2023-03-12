@@ -1,22 +1,31 @@
 package tools;
 
-import model.Board;
-import model.Coordinate;
-import model.IDeletedPieceManager;
-import model.Piece;
+import model.*;
+
+import static com.diogonunes.jcolor.Ansi.colorize;
 
 public class Screen {
 
-    public static void showStorage(IDeletedPieceManager storage){
-
+    public static void showStorageDeleted(IDeletedPieceManager storage){
+        String output = "DELETED PIECES\n";
+        for (Piece.Type type : Piece.Type.values()) {
+            output += colorize(" " + type.getShape() + " ", type.getColor().getPieceColor(), Cell.Color.WHITE_CELL.getAttribute());
+        }
+        output += "\n";
+        for (Piece.Type type : Piece.Type.values()) {
+            output += colorize(" " + storage.count(type) + " ", type.getColor().getPieceColor(), Cell.Color.BLACK_CELL.getAttribute());
+        }
+        System.out.println(output);
     }
 
     public static void show2(Board board, Piece.Color color){
         if (color == Piece.Color.BLACK)
-        showviewblack(board);
+         showviewblack(board);
         else
-        showViewWhite(board);
-       // showStorage(board.getDeletedPieceManager());
+         showViewWhite(board);
+
+
+        showStorageDeleted(board.getDeletedPieceManager());
       //  showStorage(board.getCurrentPieceManager());
     }
 

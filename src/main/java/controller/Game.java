@@ -230,7 +230,7 @@ public class Game {
         Coordinate cord;
         do {
             cord=Input.askCoordinate();
-        } while (!pieceSelected(cord)||!isYourColor(cord));
+        } while (!pieceSelected(cord)||!isYourColor(cord)||!noMovements(cord));
    //     board.getCells(cord).getPiece().getNextMovements().clear();
 
         return cord;
@@ -260,7 +260,7 @@ public class Game {
         cord = new Coordinate((char) translateCoorLetter(coordinate), translateCoorNum(coordinate));
         Cell cell = new Cell(board, cord);
         boolean isEmpty = cell.getBoard().getCells(cord).isEmpty();
-        while (isEnemy(cord) && !isEmpty ) {
+        while (!isEnemy(cord) && !isEmpty ) {
             System.out.println("u cant kill an ally");
             coordinate = sc.next().toUpperCase().trim();
             cord = new Coordinate((char) translateCoorLetter(coordinate), translateCoorNum(coordinate));
@@ -271,17 +271,38 @@ public class Game {
         return cord;
     }
 
-
+//    private void changeBoardView() {
+//        if (shift == Piece.Color.WHITE)
+//            shift = Piece.Color.BLACK;
+//        else
+//            shift = Piece.Color.WHITE;
+//    }
     public boolean isEnemy(Coordinate coordinate) {
-
         Piece p = board.getCells(coordinate).getPiece();
-        if (p == null) {
+        if (p==null){
 
-        } else if (p.getColor().equals(Piece.Color.BLACK))
+        } else if (shift == Piece.Color.WHITE) {
+            if (p.getColor().equals(Piece.Color.WHITE)){
+                return  false;
+            }
+
+        }
             return true;
-        return false;
+
+
+
     }
 
+    public boolean noMovements(Coordinate cord) {
+        if (board.getCells(cord).getPiece().getNextMovements().size()==0 ){
+            System.out.println("this piece is blocked");
+            return false;
+
+
+        }
+
+        return true;
+    }
     public boolean isYourColor(Coordinate cord) {
         if (board.getCells(cord).getPiece().getColor() != shift){
             System.out.println("is not from your color");
@@ -303,10 +324,10 @@ public class Game {
 
     private void checkTurn() {
         if (shift == Piece.Color.WHITE)
-            System.out.println("Shift of " + player1 + ".");
+            System.out.println("Turn of " + player1 + ".");
         else
-            System.out.println("Shift of " + player2 + ".");
-        Screen.show2(board, shift);
+            System.out.println("Turn of " + player2 + ".");
+      //  Screen.show2(board, shift);
         choose();
     }
 

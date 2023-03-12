@@ -78,7 +78,7 @@ public class Cell {
             return colorize(" ", color.getAttribute()) + piece + colorize(" ", color.getAttribute());
     }
 
-    enum Color {
+   public enum Color {
         WHITE_CELL(Attribute.BACK_COLOR(180, 180, 180)),
         BLACK_CELL(Attribute.BACK_COLOR(100, 100, 100)),
         HIGHLIGHT_KILL_WHITE(Attribute.BACK_COLOR(180, 0, 0)),

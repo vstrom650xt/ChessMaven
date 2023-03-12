@@ -43,6 +43,7 @@ public abstract  class Piece {
     }
 
     public  void putInYourPlace(){
+
         cell.setPiece(this);
 
     }
@@ -128,7 +129,6 @@ public abstract  class Piece {
     }
 
     public boolean moveTo(Coordinate coordinate) {
-
         while (!isInHighLight(coordinate )){
             System.out.println("you are out of the hightlights");
             coordinate=Input.askCoordinate();

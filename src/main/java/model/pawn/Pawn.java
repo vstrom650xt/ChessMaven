@@ -16,7 +16,7 @@ public abstract class Pawn extends Piece {
         super(type, cell);
     }
 
-    public abstract void transform();
+    public abstract Piece transform(Piece piece);
 
     @Override
     public boolean moveTo(Coordinate c) {
@@ -24,7 +24,7 @@ public abstract class Pawn extends Piece {
         if (move) {
             if (getCell().getCoordinate().getNumber() == 8 ||
                     getCell().getCoordinate().getNumber() == 1)
-                transform();
+                transform(getCell().getPiece());
         }
         return move;
     }

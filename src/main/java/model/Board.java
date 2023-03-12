@@ -84,7 +84,11 @@ public class Board {
             }
 
         }
+        p = new PawnBlack(getCells(new Coordinate('B', 3)));
+        p.putInYourPlace();
 
+        p = new PawnWhite(getCells(new Coordinate('B', 6)));
+        p.putInYourPlace();
 
         p = new RookBlack(getCells(new Coordinate('A', 8)));
         p.putInYourPlace();

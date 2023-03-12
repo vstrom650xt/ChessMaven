@@ -98,7 +98,11 @@ public class Game {
         System.out.println("where would you like to put it ?");
         coordinate = askPiecePlayer(); // donde vamos a poner la pieza
 
+     //   p. sige valiendo  peon al salir de moveto1
+
         p.moveTo(coordinate);
+
+
         p.putInYourPlace();
         board.resetColor();
 

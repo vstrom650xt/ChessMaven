@@ -7,13 +7,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class PawnBlack extends Pawn {
-   // private Set<Coordinate> coordinates = new HashSet<>();////////
-
     public PawnBlack(Cell cell) {
         super(Type.BLACK_PAWN,cell);
-
     }
-
 
     public Set<Coordinate> getNextMovements() {
         Coordinate position = getCell().getCoordinate(), c;
@@ -36,11 +32,17 @@ public class PawnBlack extends Pawn {
 
 
     @Override
-    public void transform() {
-        Piece p = getCell().getPiece();
-        new QueenBlack(getCell());
-        //getCell().getBoard().getDeletedPieceManager().addPiece(p);
-        cell = null;
+    public Piece transform(Piece piece) {
+
+        piece=new QueenBlack(getCell());
+        getCell().getBoard().getDeletedPieceManager().addPiece(piece);
+        piece.putInYourPlace();
+//        Piece p = getCell().getPiece();
+//       p= new QueenBlack(getCell());
+//        getCell().getBoard().getDeletedPieceManager().addPiece(p);
+//        p.putInYourPlace();
+
+        return piece;
     }
 
 

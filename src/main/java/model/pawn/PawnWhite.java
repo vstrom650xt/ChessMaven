@@ -2,8 +2,8 @@ package model.pawn;
 
 import model.*;
 import model.queen.QueenBlack;
+import model.queen.QueenWhite;
 
-import java.util.List;
 import java.util.Set;
 
 public class PawnWhite extends Pawn {
@@ -30,10 +30,17 @@ public class PawnWhite extends Pawn {
     }
 
     @Override
-    public void transform() {
-        Piece p = getCell().getPiece();
-        new QueenBlack(getCell());
-        getCell().getBoard().getDeletedPieceManager().addPiece(p);
-        cell = null;
+    public Piece transform(Piece piece) {
+
+
+        piece=new QueenBlack(getCell());
+        getCell().getBoard().getDeletedPieceManager().addPiece(piece);
+        piece.putInYourPlace();
+//        Piece p = getCell().getPiece();
+//       p= new QueenWhite(getCell());
+//        getCell().getBoard().getDeletedPieceManager().addPiece(p);
+//        p.putInYourPlace();
+
+        return  piece;
     }
 }

@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * coordinate
+ */
 public class Coordinate {
     private char letter;
     private int number;

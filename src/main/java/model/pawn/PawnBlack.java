@@ -35,12 +35,8 @@ public class PawnBlack extends Pawn {
     public Piece transform(Piece piece) {
 
         piece = new QueenBlack(getCell());
-        getCell().getBoard().getDeletedPieceManager().addPiece(piece);
+        getCell().getBoard().getCurrentPieceManager().addPiece(piece);
         piece.putInYourPlace();
-//        Piece p = getCell().getPiece();
-//       p= new QueenBlack(getCell());
-//        getCell().getBoard().getDeletedPieceManager().addPiece(p);
-//        p.putInYourPlace();
 
         return piece;
     }

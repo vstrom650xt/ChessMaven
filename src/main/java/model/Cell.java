@@ -11,9 +11,11 @@ public class Cell {
     private final Color original;
     private Color color;
 
-    private char letter;
-    private int numbe;
 
+    /**constructor of cell
+     * @param board
+     * @param coordinate
+     */
     public Cell(Board board, Coordinate coordinate) {
         this.board = board;
         this.coordinate = coordinate;
@@ -30,6 +32,9 @@ public class Cell {
         color = original;
     }
 
+    /**
+     * put the lights on the cell
+     */
     public void highlight() {
         if (isEmpty()) {
             if (original == Color.BLACK_CELL)
@@ -45,6 +50,7 @@ public class Cell {
                     Color.HIGHLIGHT_KILL_WHITE;
         }
     }
+
 
     public Color getColor() {
         return color;

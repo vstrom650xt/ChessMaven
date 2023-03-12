@@ -53,13 +53,15 @@ public class Board {
         }
     }
 
-    /**
-     * @return
-     */
+
     public Map<Coordinate, Cell> getBoard() {
         return board;
     }
 
+    /**
+     * @param coordinate
+     * @return
+     */
     public Cell getCells(Coordinate coordinate) {
         return board.get(coordinate);
     }
@@ -71,11 +73,10 @@ public class Board {
         return deletedPieceManager;
     }
 
+
     /**
-     * @return the piece you've on the board.
+     * place the piece on the board
      */
-
-
     public void placePiece() {
         Piece p;
         char a = 'A';
@@ -135,6 +136,9 @@ public class Board {
         p.putInYourPlace();
     }
 
+    /**
+     * @param coordinates  set the lights to the cells
+     */
     public void highlight(Set<Coordinate> coordinates) {
         for (Coordinate c : coordinates) {
             getCells(c).highlight();
@@ -142,6 +146,9 @@ public class Board {
     }
 
 
+    /**
+     * erase the colors of the cells
+     */
     public void resetColor() {
         for (Cell c : board.values()) {
             c.resetColor();

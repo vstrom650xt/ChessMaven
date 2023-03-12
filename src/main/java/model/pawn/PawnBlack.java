@@ -3,7 +3,6 @@ package model.pawn;
 import model.*;
 import model.queen.QueenBlack;
 
-import java.util.HashSet;
 import java.util.Set;
 
 public class PawnBlack extends Pawn {
@@ -31,8 +30,9 @@ public class PawnBlack extends Pawn {
     }
 
 
+
     @Override
-    public Piece transform(Piece piece) {
+    public void transform(Piece piece) {
 
         piece = new QueenBlack(getCell());
         getCell().getBoard().getDeletedPieceManager().addPiece(piece);
@@ -42,7 +42,6 @@ public class PawnBlack extends Pawn {
 //        getCell().getBoard().getDeletedPieceManager().addPiece(p);
 //        p.putInYourPlace();
 
-        return piece;
     }
 
 

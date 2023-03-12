@@ -96,7 +96,7 @@ public class Game {
     }
 
     /**
-     * m
+     * choose and move a piece
      */
     public void choose() {
         Coordinate coordinate;
@@ -108,9 +108,11 @@ public class Game {
         Screen.show2(board, shift);
         System.out.println("where would you like to put it ?");
         coordinate = askPiecePlayer(); // donde vamos a poner la pieza
+
         //   p. sige valiendo  peon al salir de moveto1
         p.moveTo(coordinate);
-        p.putInYourPlace();
+
+       // p.putInYourPlace();
         board.resetColor();
         if (board.getCells(coordinate).getPiece() == null) {
 
@@ -327,7 +329,7 @@ public class Game {
 
     /**
      * @param cord
-     * @return
+     * @return if the cell is empty or not
      */
     public boolean pieceSelected(Coordinate cord) {
         if (board.getCells(cord).isEmpty()) {
@@ -339,6 +341,9 @@ public class Game {
     }
 
 
+    /**
+     * check the turn
+     */
     private void checkTurn() {
         if (shift == Piece.Color.WHITE)
             System.out.println("Turn of " + player1 + ".");
@@ -349,6 +354,9 @@ public class Game {
     }
 
 
+    /**
+     * chane the view of the board
+     */
     private void changeBoardView() {
         if (shift == Piece.Color.WHITE)
             shift = Piece.Color.BLACK;

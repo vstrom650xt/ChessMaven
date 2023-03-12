@@ -31,7 +31,7 @@ public class PawnWhite extends Pawn {
     }
 
     @Override
-    public Piece transform(Piece piece) {
+    public void transform(Piece piece) {
 
 
         piece = new QueenBlack(getCell());
@@ -42,6 +42,5 @@ public class PawnWhite extends Pawn {
 //        getCell().getBoard().getDeletedPieceManager().addPiece(p);
 //        p.putInYourPlace();
 
-        return piece;
     }
 }

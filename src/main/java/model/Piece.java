@@ -2,6 +2,7 @@ package model;
 
 import com.diogonunes.jcolor.Attribute;
 import controller.Game;
+import model.queen.QueenBlack;
 import tools.Input;
 
 import java.util.HashSet;
@@ -26,6 +27,9 @@ public abstract class Piece {
         return shape;
     }
 
+    /**
+     * @return
+     */
     public abstract Set<Coordinate> getNextMovements();
 
     public Color getColor() {
@@ -52,6 +56,10 @@ public abstract class Piece {
 
     }
 
+    /**
+     * @param c
+     * @param getNextMovements
+     */
     public void check(Coordinate c, Set<Coordinate> getNextMovements) {
         Board board = getCell().getBoard();
         if (board.getCells(c) != null) {
@@ -62,6 +70,9 @@ public abstract class Piece {
         }
     }
 
+    /**
+     *
+     */
     public enum Color {
 
         WHITE(Attribute.TEXT_COLOR(255)),
@@ -81,12 +92,15 @@ public abstract class Piece {
             return pieceColor;
         }
 
-        private Color(Attribute pieceColor) {
+         Color(Attribute pieceColor) {
             this.pieceColor = pieceColor;
         }
 
     }
 
+    /**
+     * enum of Pieces
+     */
     public enum Type {
         WHITE_KING("♚", Color.WHITE),
         WHITE_QUEEN("♛", Color.WHITE),
@@ -126,8 +140,11 @@ public abstract class Piece {
         }
 
     }
-//tiene movimientos , no esta atrapada
 
+    /**
+     * @param coordinate
+     * @return
+     */
     public boolean isInHighLight(Coordinate coordinate) {
         if (getNextMovements().contains(coordinate))
             return true;
@@ -135,6 +152,10 @@ public abstract class Piece {
         return false;
     }
 
+    /**
+     * @param coordinate
+     * @return
+     */
     public boolean moveTo(Coordinate coordinate) {
         while (!isInHighLight(coordinate)) {
             System.out.println("you are out of the hightlights");
@@ -158,5 +179,7 @@ public abstract class Piece {
         return colorize(shape.getShape(), shape.getColor().getPieceColor(), cell.getColor()
                 .getAttribute());
     }
+
+
 
 }

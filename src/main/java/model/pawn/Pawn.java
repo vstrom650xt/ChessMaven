@@ -2,9 +2,6 @@ package model.pawn;
 
 import model.*;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * pawb
  */
@@ -20,11 +17,12 @@ public abstract class Pawn extends Piece {
     }
 
     /**
-     * @param piece
+     * @param
      * @return a queen
      */
-    public abstract Piece transform(Piece piece);
+  //  public abstract void transform();
 
+    public  abstract void transform(Piece piece);
     /**
      * @param c
      * @return if it can move
@@ -32,11 +30,11 @@ public abstract class Pawn extends Piece {
     @Override
     public boolean moveTo(Coordinate c) {
         boolean move = super.moveTo(c);
-        if (move) {
-            if (getCell().getCoordinate().getNumber() == 8 ||
-                    getCell().getCoordinate().getNumber() == 1)
-                transform(getCell().getPiece());
-        }
+//        if (move) {
+//            if (getCell().getCoordinate().getNumber() == 8 ||
+//                    getCell().getCoordinate().getNumber() == 1)
+//                transform(getCell().getPiece());
+//        }
         return move;
     }
 
@@ -61,4 +59,6 @@ public abstract class Pawn extends Piece {
         if ((board.getCells(c) != null) && (board.getCells(c).isEmpty()))
             coordinates.add(c);
     }
+
+
 }

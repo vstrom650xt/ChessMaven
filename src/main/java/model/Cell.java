@@ -4,6 +4,9 @@ import com.diogonunes.jcolor.Attribute;
 
 import static com.diogonunes.jcolor.Ansi.colorize;
 
+/**
+ * cell
+ */
 public class Cell {
     private Piece piece;
     private Board board;
@@ -30,6 +33,9 @@ public class Cell {
         color = original;
     }
 
+    /**
+     *
+     */
     public void highlight() {
         if (isEmpty()) {
             if (original == Color.BLACK_CELL)

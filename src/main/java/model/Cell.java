@@ -4,9 +4,6 @@ import com.diogonunes.jcolor.Attribute;
 
 import static com.diogonunes.jcolor.Ansi.colorize;
 
-/**
- * cell
- */
 public class Cell {
     private Piece piece;
     private Board board;
@@ -14,9 +11,11 @@ public class Cell {
     private final Color original;
     private Color color;
 
-    private char letter;
-    private int numbe;
 
+    /**constructor of cell
+     * @param board
+     * @param coordinate
+     */
     public Cell(Board board, Coordinate coordinate) {
         this.board = board;
         this.coordinate = coordinate;
@@ -34,7 +33,7 @@ public class Cell {
     }
 
     /**
-     *
+     * put the lights on the cell
      */
     public void highlight() {
         if (isEmpty()) {
@@ -51,6 +50,7 @@ public class Cell {
                     Color.HIGHLIGHT_KILL_WHITE;
         }
     }
+
 
     public Color getColor() {
         return color;

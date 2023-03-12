@@ -35,7 +35,7 @@ public class PawnWhite extends Pawn {
 
 
         piece = new QueenWhite(getCell());
-        getCell().getBoard().getDeletedPieceManager().addPiece(piece);
+        getCell().getBoard().getCurrentPieceManager().addPiece(piece);
         piece.putInYourPlace();
 
     }

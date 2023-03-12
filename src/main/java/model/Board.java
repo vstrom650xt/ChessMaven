@@ -28,6 +28,9 @@ public class Board {
     private CurrentPieceManager currentPieceManager;
 
 
+    /**
+     * constructor of board
+     */
     public Board() {
         board = new HashMap<>();
         inicializarTablero();
@@ -60,7 +63,7 @@ public class Board {
 
     /**
      * @param coordinate
-     * @return
+     * @return cell of a coordinate
      */
     public Cell getCells(Coordinate coordinate) {
         return board.get(coordinate);

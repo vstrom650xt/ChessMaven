@@ -1,12 +1,18 @@
 package tools;
 
-import controller.Game;
 import model.*;
 
 import static com.diogonunes.jcolor.Ansi.colorize;
 
+/**
+ * Screen
+ */
 public class Screen {
 
+    /**
+     * show deleted pieces
+     * @param storage
+     */
     public static void showStorageDeleted(IDeletedPieceManager storage){
         String output = "DELETED PIECES\n";
         for (Piece.Type type : Piece.Type.values()) {
@@ -19,6 +25,10 @@ public class Screen {
         System.out.println(output);
     }
 
+    /**
+     * show  current storage of pieces
+     * @param storage
+     */
     public static void showStorageCurrent(CurrentPieceManager storage){
         String output = "CURRENT PIECES\n";
         for (Piece.Type type : Piece.Type.values()) {
@@ -30,7 +40,13 @@ public class Screen {
         }
         System.out.println(output);
     }
-    public static void show2(Board board, Piece.Color color){
+
+    /**
+     * show the board in both views
+     * @param board
+     * @param color
+     */
+    public static void show(Board board, Piece.Color color){
         if (color == Piece.Color.BLACK)
          showviewblack(board);
         else
@@ -42,7 +58,10 @@ public class Screen {
     }
 
 
-
+    /**
+     * shoow the black view of the board
+     * @param board
+     */
     private static void showviewblack(Board board){
         String output = "   A  B  C  D  E  F  G  H\n";
         for (int i = 0; i < 8; i++) {
@@ -55,14 +74,11 @@ public class Screen {
         output += "   A  B  C  D  E  F  G  H";
         System.out.println(output);
     }
-    public static void show(Board board, Piece.Color color){
-        if (color == Piece.Color.BLACK)
-            showViewWhite(board);
-        else
-            showviewblack(board);
 
-    }
-
+    /**
+     * shoow the white view of the board
+     * @param board
+     */
     private static void showViewWhite(Board board){
         String output = "   A  B  C  D  E  F  G  H\n";
         for (int i = 8; i > 0; i--) {
@@ -76,8 +92,5 @@ public class Screen {
         System.out.println(output);
     }
 
-    public static void clear(){
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-    }
+
 }

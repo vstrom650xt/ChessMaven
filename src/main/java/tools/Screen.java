@@ -1,5 +1,6 @@
 package tools;
 
+import controller.Game;
 import model.*;
 
 import static com.diogonunes.jcolor.Ansi.colorize;
@@ -18,6 +19,17 @@ public class Screen {
         System.out.println(output);
     }
 
+    public static void showStorageCurrent(CurrentPieceManager storage){
+        String output = "CURRENT PIECES\n";
+        for (Piece.Type type : Piece.Type.values()) {
+            output += colorize(" " + type.getShape() + " ", type.getColor().getPieceColor(), Cell.Color.WHITE_CELL.getAttribute());
+        }
+        output += "\n";
+        for (Piece.Type type : Piece.Type.values()) {
+            output += colorize(" " + storage.count(type.getColor(),type) + " ", type.getColor().getPieceColor(), Cell.Color.BLACK_CELL.getAttribute());
+        }
+        System.out.println(output);
+    }
     public static void show2(Board board, Piece.Color color){
         if (color == Piece.Color.BLACK)
          showviewblack(board);
@@ -26,8 +38,10 @@ public class Screen {
 
 
         showStorageDeleted(board.getDeletedPieceManager());
-      //  showStorage(board.getCurrentPieceManager());
+        showStorageCurrent(board.getCurrentPieceManager());
     }
+
+
 
     private static void showviewblack(Board board){
         String output = "   A  B  C  D  E  F  G  H\n";
@@ -62,23 +76,7 @@ public class Screen {
         output += "   A  B  C  D  E  F  G  H";
         System.out.println(output);
     }
-    public static void show(int[][] v){
-        for(int row=0;row<v.length;row++) {
-            for (int col = 0; col < v[row].length; col++) {
-                System.out.print(v[row][col] + " ");
-            }
-            System.out.println();
-        }
-    }
 
-    public static void show(char[][] v){
-        for(int row=0;row<v.length;row++) {
-            for (int col = 0; col < v[row].length; col++) {
-                System.out.print(v[row][col] + " ");
-            }
-            System.out.println();
-        }
-    }
     public static void clear(){
         System.out.print("\033[H\033[2J");
         System.out.flush();

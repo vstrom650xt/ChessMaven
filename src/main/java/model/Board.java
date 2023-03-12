@@ -22,7 +22,7 @@ public class Board {
     private Map<Coordinate, Cell> board;
 
     private IDeletedPieceManager deletedPieceManager;
-    private IDeletedPieceManager currentPieceManager;
+    private CurrentPieceManager currentPieceManager;
 
 
     public Board() {
@@ -30,9 +30,12 @@ public class Board {
         inicializarTablero();
         placePiece();
         deletedPieceManager = new DeletedPieceManager();
-       // currentPieceManager = new CurrentPieceManager(this);
+        currentPieceManager = new CurrentPieceManager(this);
     }
 
+    public CurrentPieceManager getCurrentPieceManager() {
+        return currentPieceManager;
+    }
 
     public void inicializarTablero() {
 
@@ -62,9 +65,7 @@ public class Board {
     /**
      * @return the piece you've on the board.
      */
-    public IDeletedPieceManager getCurrentPieceManager() {
-        return currentPieceManager;
-    }
+
 
     public void placePiece() {
         Piece p;
@@ -83,10 +84,6 @@ public class Board {
             }
 
         }
-        p = new PawnBlack(getCells(new Coordinate('A', 4)));
-        p.putInYourPlace();
-        p = new PawnBlack(getCells(new Coordinate('C', 3)));
-        p.putInYourPlace();
 
 
         p = new RookBlack(getCells(new Coordinate('A', 8)));
@@ -97,7 +94,7 @@ public class Board {
         p.putInYourPlace();
         p = new KingBlack(getCells(new Coordinate('D', 8)));
         p.putInYourPlace();
-        p = new QueenBlack(getCells(new Coordinate('D', 6)));
+        p = new QueenBlack(getCells(new Coordinate('E', 8)));
         p.putInYourPlace();
         p = new BishopBlack(getCells(new Coordinate('F', 8)));
         p.putInYourPlace();
@@ -139,6 +136,7 @@ public class Board {
     }
 
 
+
     @Override
     public String toString() {
         String output = "   A  B  C  D  E  F  G  H\n";
@@ -153,6 +151,7 @@ public class Board {
         output += "   A  B  C  D  E  F  G  H";
         return output;
     }
+
 
 
 }

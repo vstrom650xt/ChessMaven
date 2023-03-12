@@ -138,7 +138,7 @@ public abstract  class Piece {
         if (!cell.getBoard().getCells(coordinate).isEmpty()){
             Piece p = cell.getBoard().getCells(coordinate).getPiece();
             p.cell = null;
-            //cell.getBoard().getDeletedPieceManager().addPiece(p);
+            cell.getBoard().getDeletedPieceManager().addPiece(p);
         }
         cell.setPiece(null);
         cell = cell.getBoard().getCells(coordinate);

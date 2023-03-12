@@ -1,9 +1,6 @@
 package controller;
 
-import model.Board;
-import model.Cell;
-import model.Coordinate;
-import model.Piece;
+import model.*;
 import tools.Input;
 import tools.Screen;
 
@@ -16,13 +13,19 @@ import java.util.Scanner;
 public class Game {
     static Board board = new Board();
     private Piece.Color shift;
-    private String player1 = "pp", player2 = "ppt2";
+    private String player1 , player2 ;
+
 
     public Game() {
         shift = Piece.Color.WHITE;
-        this.player1 = player1;
-        this.player2 = player2;
+        this.player1 = "player1";
+        this.player2 = "player2";
     }
+
+//    public IDeletedPieceManager getCurrentPieceManager() {
+//        return currentPieceManager;
+//    }
+
 
     public void start() {
         inicio();
@@ -86,17 +89,14 @@ public class Game {
     public void choose() {
         Coordinate coordinate;
         Screen.show2(board,shift);
-       // System.out.println(board);
         System.out.println("choose the piece");
         coordinate = getCoordinatePlayer(); //elegir la pieza
         Piece p = board.getCells(coordinate).getPiece();
         board.highlight(board.getCells(coordinate).getPiece().getNextMovements());
         Screen.show2(board,shift);
 
-   //     System.out.println(board);
         System.out.println("where would you like to put it ?");
         coordinate = askPiecePlayer(); // donde vamos a poner la pieza
-
 
         p.moveTo(coordinate);
         p.putInYourPlace();
@@ -270,7 +270,7 @@ public class Game {
 
         return cord;
     }
-
+//
 //    private void changeBoardView() {
 //        if (shift == Piece.Color.WHITE)
 //            shift = Piece.Color.BLACK;

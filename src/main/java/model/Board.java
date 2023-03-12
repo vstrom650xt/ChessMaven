@@ -17,6 +17,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Board
+ */
 public class Board {
 
     private Map<Coordinate, Cell> board;
@@ -37,6 +40,9 @@ public class Board {
         return currentPieceManager;
     }
 
+    /**
+     * create the board
+     */
     public void inicializarTablero() {
 
         for (int i = 0; i < 8; i++) {
@@ -47,6 +53,9 @@ public class Board {
         }
     }
 
+    /**
+     * @return
+     */
     public Map<Coordinate, Cell> getBoard() {
         return board;
     }
@@ -140,7 +149,6 @@ public class Board {
     }
 
 
-
     @Override
     public String toString() {
         String output = "   A  B  C  D  E  F  G  H\n";
@@ -155,7 +163,6 @@ public class Board {
         output += "   A  B  C  D  E  F  G  H";
         return output;
     }
-
 
 
 }

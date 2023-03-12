@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class PawnBlack extends Pawn {
     public PawnBlack(Cell cell) {
-        super(Type.BLACK_PAWN,cell);
+        super(Type.BLACK_PAWN, cell);
     }
 
     public Set<Coordinate> getNextMovements() {
@@ -34,7 +34,7 @@ public class PawnBlack extends Pawn {
     @Override
     public Piece transform(Piece piece) {
 
-        piece=new QueenBlack(getCell());
+        piece = new QueenBlack(getCell());
         getCell().getBoard().getDeletedPieceManager().addPiece(piece);
         piece.putInYourPlace();
 //        Piece p = getCell().getPiece();
@@ -44,7 +44,6 @@ public class PawnBlack extends Pawn {
 
         return piece;
     }
-
 
 
 }

@@ -5,14 +5,20 @@ import model.*;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * king
+ */
 public abstract class King extends Piece {
 
-    private Set<Coordinate> coordinates= new HashSet<>();
+    private Set<Coordinate> coordinates = new HashSet<>();
 
     public King(Type shape, Cell cell) {
         super(shape, cell);
     }
 
+    /**
+     * @return  possible movements
+     */
     @Override
     public Set<Coordinate> getNextMovements() {
         Coordinate position = getCell().getCoordinate();
@@ -47,18 +53,5 @@ public abstract class King extends Piece {
         return coordinates;
     }
 
-    public Set<Coordinate> check(Coordinate c) {
-        Board board = getCell().getBoard();
-        if (board.getCells(c) != null) {
-            if (board.getCells(c).isEmpty() ||
-                    board.getCells(c).getPiece().getShape().getColor() != getShape().getColor()) {
-                coordinates.add(c);
 
-            }
-
-
-        }
-
-        return coordinates;
-    }
 }

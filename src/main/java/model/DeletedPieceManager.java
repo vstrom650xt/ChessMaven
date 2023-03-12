@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class DeletedPieceManager implements IDeletedPieceManager{
+public class DeletedPieceManager implements IDeletedPieceManager {
 
-private List<Piece> pieceList;
+    private List<Piece> pieceList;
 
     public DeletedPieceManager() {
         this.pieceList = new LinkedList<>();

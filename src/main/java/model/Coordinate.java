@@ -1,8 +1,8 @@
 package model;
 
-public class Coordinate{
-private char letter;
-private int number;
+public class Coordinate {
+    private char letter;
+    private int number;
 
     public Coordinate(char letter, int number) {
         this.letter = Character.toUpperCase(letter);

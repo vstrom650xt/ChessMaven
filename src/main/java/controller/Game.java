@@ -35,12 +35,12 @@ public class Game {
                 "[2]Exit");
         if (answ == 1) {
             do {
-                choose();
-                if (kingsAlive())
-                    choose();
-
-                else
+                if (kingsAlive()){
+                    checkTurn();
+                    changeBoardView();
+                }   else{
                     exit = true;
+                }
 
             } while (!exit);
 
@@ -85,13 +85,15 @@ public class Game {
 
     public void choose() {
         Coordinate coordinate;
-
-        System.out.println(board);
+        Screen.show2(board,shift);
+       // System.out.println(board);
         System.out.println("choose the piece");
         coordinate = getCoordinatePlayer(); //elegir la pieza
         Piece p = board.getCells(coordinate).getPiece();
         board.highlight(board.getCells(coordinate).getPiece().getNextMovements());
-        System.out.println(board);
+        Screen.show2(board,shift);
+
+   //     System.out.println(board);
         System.out.println("where would you like to put it ?");
         coordinate = askPiecePlayer(); // donde vamos a poner la pieza
 
@@ -228,7 +230,7 @@ public class Game {
         Coordinate cord;
         do {
             cord=Input.askCoordinate();
-        } while (!pieceSelected(cord));
+        } while (!pieceSelected(cord) && !isYourColor(cord));
    //     board.getCells(cord).getPiece().getNextMovements().clear();
 
         return cord;
@@ -280,7 +282,20 @@ public class Game {
         return false;
     }
 
+    public boolean isYourColor(Coordinate cord) {
+        if (board.getCells(cord).getPiece().getColor() == shift){
+            if (board.getCells(cord).getPiece().getNextMovements().size()>0)
+               return true;
+            else{
+                System.out.println("This piece is not from your color");
+                return false;
+            }
 
+
+        }
+
+        return false;
+    }
     public boolean pieceSelected(Coordinate cord) {
         if (board.getCells(cord).isEmpty()) {
             System.out.println("you choose an empty cell , nothing to move");
@@ -290,15 +305,16 @@ public class Game {
         return true;
     }
 
-    private void shift() {
+    private void checkTurn() {
         if (shift == Piece.Color.WHITE)
             System.out.println("Shift of " + player1 + ".");
         else
             System.out.println("Shift of " + player2 + ".");
         Screen.show2(board, shift);
+        choose();
     }
 
-    private void changeShift() {
+    private void changeBoardView() {
         if (shift == Piece.Color.WHITE)
             shift = Piece.Color.BLACK;
         else

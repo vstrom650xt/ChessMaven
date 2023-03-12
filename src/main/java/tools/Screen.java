@@ -13,14 +13,14 @@ public class Screen {
 
     public static void show2(Board board, Piece.Color color){
         if (color == Piece.Color.BLACK)
-            showViewBlack(board);
+        showviewblack(board);
         else
-            showViewWhite(board);
+        showViewWhite(board);
        // showStorage(board.getDeletedPieceManager());
       //  showStorage(board.getCurrentPieceManager());
     }
 
-    private static void showViewWhite(Board board){
+    private static void showviewblack(Board board){
         String output = "   A  B  C  D  E  F  G  H\n";
         for (int i = 0; i < 8; i++) {
             output += (i + 1) + " ";
@@ -34,14 +34,14 @@ public class Screen {
     }
     public static void show(Board board, Piece.Color color){
         if (color == Piece.Color.BLACK)
-            showViewBlack(board);
-        else
             showViewWhite(board);
+        else
+            showviewblack(board);
   //      showStorage(board.getDeletedPieceManager());
 //        showStorage(board.getCurrentPieceManager());
     }
 
-    private static void showViewBlack(Board board){
+    private static void showViewWhite(Board board){
         String output = "   A  B  C  D  E  F  G  H\n";
         for (int i = 8; i > 0; i--) {
             output += i + " ";

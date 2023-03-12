@@ -15,15 +15,15 @@ public class PawnWhite extends Pawn {
         Coordinate position = getCell().getCoordinate(), c;
 
         //UP
-        c = position.up();
+        c = position.down();
         checkPawnMove(c);
-        if (getCell().getCoordinate().getNumber() == 7) {
-            c = position.up().up();
+        if (getCell().getCoordinate().getNumber() == 2) {
+            c = position.down().down();
             checkPawnMove(c);
         }
-        c = position.diagonalUpLeft();
+        c = position.diagonalDownLeft();
         checkPawnKiller(c);
-        c = position.diagonalUpRight();
+        c = position.diagonalDownRight();
         checkPawnKiller(c);
 
         return coordinates;
